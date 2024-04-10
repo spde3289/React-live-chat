@@ -1,7 +1,26 @@
+import { useState, useEffect } from "react";
 import ChatItem from "./chatItem";
-import Scissors from "../../svg/Scissors"; 
+import Scissors from "../../svg/Scissors";
+import axios from "axios";
 
-export default function Sidebar() {
+type RoomListType = { id: number; name: string }[] | null;
+
+const Sidebar = () => {
+  const [roomList, setRoomList] = useState<RoomListType>(null);
+
+  useEffect(() => {
+    const data = async () => {
+      try {
+        const s = await axios.get("http://localhost:3000/room");
+        setRoomList(s.data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    data();
+  }, []);
+
   return (
     <nav className="w-[255px]  ">
       <div className="bg-white h-20 border-slate-300 border-r-[1px]">
@@ -15,16 +34,13 @@ export default function Sidebar() {
       </div>
       <div className="flex items-center justify-center">
         <ul className="h-[648px] w-64 px-5 overflow-y-scroll scroll">
-          <ChatItem link="about" />
-          <ChatItem link="2" />
-          <ChatItem link="3" />
-          <ChatItem link="4" />
-          <ChatItem link="5" />
-          <ChatItem link="6" />
-          <ChatItem link="5" />
-          <ChatItem link="6" />
+          {roomList?.map((el) => {
+            return <ChatItem link={el.name} key={el.id} />;
+          })}
         </ul>
       </div>
     </nav>
   );
-}
+};
+
+export default Sidebar;

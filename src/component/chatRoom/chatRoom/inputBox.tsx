@@ -2,7 +2,7 @@ export default function InputBox() {
   return (
     <>
       <div className="text-xl w-full ">
-        <div className="h-2 bg-gradient-to-t from-gray-100"></div>
+        <div className="opacity-95 h-2 bg-gradient-to-t from-gray-100"></div>
         <div className="relative py-3 flex align-middle justify-center">
           <input
             className="px-4 pr-14 h-10 outline-none rounded-3xl w-3/4 bg-[#eaecee]"
