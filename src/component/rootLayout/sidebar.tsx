@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import ChatItem from "./chatItem";
 import Scissors from "../../svg/Scissors";
-import axios from "axios";
+import client from "../../fetch/backEnd";
 
 type RoomListType = { id: number; name: string }[] | null;
 
@@ -11,13 +11,12 @@ const Sidebar = () => {
   useEffect(() => {
     const data = async () => {
       try {
-        const s = await axios.get("http://localhost:3000/room");
+        const s = await client.get("/room");
         setRoomList(s.data);
       } catch (err) {
         console.log(err);
       }
     };
-
     data();
   }, []);
 
