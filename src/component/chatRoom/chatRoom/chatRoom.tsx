@@ -1,8 +1,8 @@
+import { memo } from "react";
 import ContentContainer from "./contentContainer";
 import InputBox from "./inputBox";
 
-export default function CharRoom(props: any) {
-
+export default memo(function CharRoom(props: any) {
   return (
     <section className="flex flex-col m-auto shadow-lg h-[824px] w-[100%] mx-0">
       <div>
@@ -12,9 +12,18 @@ export default function CharRoom(props: any) {
         <div className="h-2 bg-gradient-to-b from-gray-200"></div>
       </div>
       <div className="flex h-[100%] justify-between flex-col">
-        <ContentContainer userType="me" room={props.room} />
-        <InputBox onChange={props.onChange} handleKeypress={props.handleKeypress} />
+        <ContentContainer
+          userType="me"
+          user={props.user}
+          chat={props.chat}
+          room={props.room}
+        />
+        <InputBox
+          msg={props.msg}
+          onChange={props.onChange}
+          handleKeypress={props.handleKeypress}
+        />
       </div>
     </section>
   );
-}
+});

@@ -1,23 +1,24 @@
-const chat: any = {
+import { memo } from "react";
+
+const user: any = {
   me: "rounded-[26px_26px_0_26px] bg-blue-600 ",
   other: "rounded-[26px_26px_26px_0] bg-gray-300",
 };
 
-export default function ChatHistory({ userType }: any) {
+export default memo(function ChatHistory({ userType, chat }: any) {
   const type = userType === "me" ? "float-right" : "float-left";
   return (
     <>
       <div className="mb-4">
         <div className={type}>
-          <div className="text-xl">김지훈</div>
+          <div className="text-xl">{chat.user}</div>
           <div
-            className={`${chat[userType]} w-min break-words max-w-md text-2xl p-2`}
+            className={`${user[userType]}  break-words w-auto max-w-md text-2xl p-2`}
           >
-            asdasdasdasd dasdasdadasdasdddddddddddddddddddddddddddddasdasdasd
-            dasda dasdqw dqwdasd ddddddddddd
+            {chat.msg}
           </div>
         </div>
       </div>
     </>
   );
-}
+});

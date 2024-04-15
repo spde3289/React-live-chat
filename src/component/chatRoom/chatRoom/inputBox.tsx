@@ -1,10 +1,13 @@
-export default function InputBox(props: any) {
+import { memo } from "react";
+
+export default memo(function InputBox(props: any) {
   return (
     <>
       <div className="relative text-xl w-full ">
         <div className="opacity-95 h-2 bg-gradient-to-t from-gray-100"></div>
         <div className="relative py-3 flex align-middle justify-center">
           <input
+            value={props.msg}
             onChange={props.onChange}
             onKeyUp={props.handleKeypress}
             className="px-4 pr-14 h-10 outline-none rounded-3xl w-3/4 bg-[#eaecee]"
@@ -33,4 +36,4 @@ export default function InputBox(props: any) {
       </div>
     </>
   );
-}
+});

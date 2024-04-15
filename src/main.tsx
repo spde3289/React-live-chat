@@ -8,7 +8,7 @@ import App from "./App.tsx";
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <BrowserRouter >
     <RecoilRoot>
-      <App />
+      <App /> 
     </RecoilRoot>
   </BrowserRouter>
 );
