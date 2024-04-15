@@ -13,7 +13,7 @@ export default function CharRoom(props: any) {
       </div>
       <div className="flex h-[100%] justify-between flex-col">
         <ContentContainer userType="me" room={props.room} />
-        <InputBox />
+        <InputBox onChange={props.onChange} handleKeypress={props.handleKeypress} />
       </div>
     </section>
   );
