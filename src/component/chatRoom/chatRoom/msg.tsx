@@ -5,7 +5,7 @@ const user: any = {
   other: "rounded-[26px_26px_26px_0] bg-gray-300",
 };
 
-export default memo(function ChatHistory({ userType, chat }: any) {
+export default memo(function Msg({ userType, chat }: any) {
   const type = userType === "me" ? "float-right" : "float-left";
   return (
     <>
