@@ -1,7 +1,7 @@
-import { useState, useEffect, memo } from "react";
+import { useState, useEffect, memo, KeyboardEvent, ChangeEvent } from "react";
 import { socket } from "../../../soket/soket";
 import MsgContainer from "./msgContainer";
-import InputBox from "./inputBox";
+import InputContainer from "./inputContainer";
 
 export type ChatLogType = {
   user: string;
@@ -18,6 +18,7 @@ export default memo(function CharRoom({ roomId }: ChatRoomInterface) {
 
   useEffect(() => {
     socket.connect();
+    // 언마운트
     return () => {
       if (socket) {
         socket.disconnect();
@@ -26,7 +27,8 @@ export default memo(function CharRoom({ roomId }: ChatRoomInterface) {
   }, []);
 
   useEffect(() => {
-    socket.emit("new member");
+    // 방 최초 입장
+    socket.emit("join room");
     // 소켓 연결
     socket.on("connect", () => {
       console.log(socket.connected); // true
@@ -35,14 +37,14 @@ export default memo(function CharRoom({ roomId }: ChatRoomInterface) {
     socket.on("disconnect", () => {
       console.log(socket.connected); // false
     });
-
+    // 채팅 로그
     socket.on("chat message", (remsg: any) => {
       setChatLog((currentMsg) => [
         ...currentMsg,
         { user: remsg.user, msg: remsg.msg },
       ]);
     });
-
+    // 언마운트
     return () => {
       socket.off("connect");
       socket.off("chat message");
@@ -50,21 +52,21 @@ export default memo(function CharRoom({ roomId }: ChatRoomInterface) {
     };
   }, []);
 
-  const onChange = (e: any) => {
+  const onChangeMsg = (e: ChangeEvent<HTMLInputElement>): void => {
     setMsg(e.target.value);
   };
 
-  const handleKeypress = (e: any) => {
-    if (e.keyCode === 13) {
-      //Enter을 누르게 되면 실행한다
+  const handleKeypress = (e: KeyboardEvent<HTMLInputElement>): void => {
+    //Enter을 누르게 되면 실행
+    if (e.key === "Enter") {
       if (msg) {
-        data(); // 메시지가 있으면 보낸다.
+        SendMsg();
       }
     }
   };
 
   /** 채팅 입력시 메세지, id값 보냄 */
-  const data = () => {
+  const SendMsg = () => {
     socket.emit("chat message", msg, socket.id);
     setMsg("");
   };
@@ -79,9 +81,9 @@ export default memo(function CharRoom({ roomId }: ChatRoomInterface) {
       </div>
       <div className="flex h-[100%] justify-between flex-col">
         <MsgContainer user={socket.id} chatLog={chatLog} />
-        <InputBox
+        <InputContainer
           msg={msg}
-          onChange={onChange}
+          onChangeMsg={onChangeMsg}
           handleKeypress={handleKeypress}
         />
       </div>

@@ -1,15 +1,25 @@
-import { memo } from "react";
+import { memo, ChangeEvent, KeyboardEvent } from "react";
 
-export default memo(function InputBox(props: any) {
+interface InputContainerType {
+  msg: string;
+  onChangeMsg: (e: ChangeEvent<HTMLInputElement>) => void;
+  handleKeypress: (e: KeyboardEvent<HTMLInputElement>) => void;
+}
+
+export default memo(function InputContainer({
+  msg,
+  onChangeMsg,
+  handleKeypress,
+}: InputContainerType) {
   return (
     <>
       <div className="relative text-xl w-full ">
         <div className="opacity-95 h-2 bg-gradient-to-t from-gray-100"></div>
         <div className="relative py-3 flex align-middle justify-center">
           <input
-            value={props.msg}
-            onChange={props.onChange}
-            onKeyUp={props.handleKeypress}
+            value={msg}
+            onChange={onChangeMsg}
+            onKeyUp={handleKeypress}
             className="px-4 pr-14 h-10 outline-none rounded-3xl w-3/4 bg-[#eaecee]"
             placeholder="Type a message here"
           />

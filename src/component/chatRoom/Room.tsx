@@ -12,7 +12,7 @@ export default function Room() {
     <div className="shadow-xl w-full mx-2 text-8xl ">
       <div className="w-full flex bg-white h-full">
         <CharRoom roomId={decodedParameter} />
-        <ParticipantCounter room={decodedParameter} />
+        <ParticipantCounter roomId={decodedParameter} />
       </div>
     </div>
   );
