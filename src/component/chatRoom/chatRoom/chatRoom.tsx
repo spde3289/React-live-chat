@@ -24,11 +24,11 @@ export default memo(function CharRoom({ roomId }: ChatRoomInterface) {
         socket.disconnect();
       }
     };
-  }, []);
+  }, [roomId]);
 
   useEffect(() => {
     // 방 최초 입장
-    socket.emit("join room");
+    socket.emit("join room", roomId);
     // 소켓 연결
     socket.on("connect", () => {
       console.log(socket.connected); // true
@@ -46,11 +46,12 @@ export default memo(function CharRoom({ roomId }: ChatRoomInterface) {
     });
     // 언마운트
     return () => {
+      setChatLog([])
       socket.off("connect");
       socket.off("chat message");
       socket.off("disconnect");
     };
-  }, []);
+  }, [roomId]);
 
   const onChangeMsg = (e: ChangeEvent<HTMLInputElement>): void => {
     setMsg(e.target.value);
