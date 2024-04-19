@@ -10,9 +10,23 @@ export type ChatLogType = {
 
 interface ChatRoomInterface {
   roomId: String;
+  user: string;
 }
 
-export default memo(function CharRoom({ roomId }: ChatRoomInterface) {
+/* function generateRandomNumber() {
+  return Math.floor(Math.random() * 10000)
+    .toString()
+    .padStart(4, "0");
+}
+
+function generateRandomNickname() {
+  return "user_" + generateRandomNumber();
+}
+
+const randomNickname = generateRandomNickname();
+console.log(randomNickname); // 예시: user_1234 */
+
+export default memo(function CharRoom({ roomId, user }: ChatRoomInterface) {
   const [chatLog, setChatLog] = useState<ChatLogType>([]);
   const [msg, setMsg] = useState<string>("");
 
@@ -20,15 +34,16 @@ export default memo(function CharRoom({ roomId }: ChatRoomInterface) {
     socket.connect();
     // 언마운트
     return () => {
+      socket.emit("나가기", user);
       if (socket) {
         socket.disconnect();
       }
     };
-  }, [roomId]);
+  }, []);
 
   useEffect(() => {
     // 방 최초 입장
-    socket.emit("join room", roomId);
+    socket.emit("join room", user);
     // 소켓 연결
     socket.on("connect", () => {
       console.log(socket.connected); // true
@@ -46,12 +61,12 @@ export default memo(function CharRoom({ roomId }: ChatRoomInterface) {
     });
     // 언마운트
     return () => {
-      setChatLog([])
+      setChatLog([]);
       socket.off("connect");
       socket.off("chat message");
       socket.off("disconnect");
     };
-  }, [roomId]);
+  }, []);
 
   const onChangeMsg = (e: ChangeEvent<HTMLInputElement>): void => {
     setMsg(e.target.value);
@@ -68,7 +83,7 @@ export default memo(function CharRoom({ roomId }: ChatRoomInterface) {
 
   /** 채팅 입력시 메세지, id값 보냄 */
   const SendMsg = () => {
-    socket.emit("chat message", msg, socket.id);
+    socket.emit("chat message", msg, user);
     setMsg("");
   };
 
@@ -81,7 +96,7 @@ export default memo(function CharRoom({ roomId }: ChatRoomInterface) {
         <div className="h-2 bg-gradient-to-b from-gray-200"></div>
       </div>
       <div className="flex h-[100%] justify-between flex-col">
-        <MsgContainer user={socket.id} chatLog={chatLog} />
+        <MsgContainer user={user} chatLog={chatLog} />
         <InputContainer
           msg={msg}
           onChangeMsg={onChangeMsg}
