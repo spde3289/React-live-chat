@@ -7,16 +7,16 @@ interface ParticipantCounterType {
   roomId: string;
 }
 
-type aaa = { user: string; id: string };
+type UserListType = { user: string; id: string };
 
 export default function ParticipantCounter({ roomId }: ParticipantCounterType) {
-  const [userList, setUserList] = useState<aaa[]>([]);
+  const [userList, setUserList] = useState<UserListType[]>([]);
 
   useEffect(() => {
     // 참여유저 리스트
-    socket.on("user list", (List) => {
-      setUserList(List);
-      console.log(List);
+    socket.on("user list", (list) => {
+      setUserList(list);
+      console.log(list);
     });
     return () => {
       setUserList([]);

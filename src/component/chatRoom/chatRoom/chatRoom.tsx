@@ -59,9 +59,20 @@ export default memo(function CharRoom({ roomId, user }: ChatRoomInterface) {
         { user: remsg.user, msg: remsg.msg },
       ]);
     });
+    socket.on("user list", (list) => {
+      setChatLog((currentMsg) => [
+        ...currentMsg,
+        {
+          user: "system",
+          msg: list[list.length - 1]?.user + " 님이 입장하셨습니다. ",
+        },
+      ]);
+    });
+
     // 언마운트
     return () => {
       setChatLog([]);
+      socket.off("user list");
       socket.off("connect");
       socket.off("chat message");
       socket.off("disconnect");
@@ -88,7 +99,7 @@ export default memo(function CharRoom({ roomId, user }: ChatRoomInterface) {
   };
 
   return (
-    <section className="flex flex-col m-auto shadow-lg h-[824px] w-[100%] mx-0">
+    <section className="flex bg-white flex-col m-auto shadow-xl h-[824px] w-[70%] mx-0">
       <div>
         <header className="flex items-center bg-white h-20 border-slate-300 ">
           <h2 className="text-4xl pl-5 font-bold">{roomId}</h2>

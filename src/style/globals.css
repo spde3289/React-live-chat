@@ -48,3 +48,7 @@ a {
 .scroll::-webkit-scrollbar {
   display: none;
 }
+
+.content-container {
+  height: calc(100vh - 68px);
+}
