@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import ChatItem from "./chatItem";
 import client from "../../../fetch/backEnd";
 import SidebarHeader from "./sidebarHeader";
+import StatusController from "./statusController";
 
 type RoomListType = { id: number; name: string }[] | null;
 
@@ -21,35 +22,17 @@ const Sidebar = () => {
   }, []);
 
   return (
-    <nav className="w-[20%]  bg-base ">
+    <nav className="min-w-[260px] px-[12px] h-screen bg-base ">
       <SidebarHeader />
-      {/*       <div className="p-5 justify-between flex">
-        <div>진행중</div>
-        <div>보류중</div>
-        <div>종료됨</div>
-      </div> */}
-      <div className="flex items-center justify-center">
-        <ul className="content-container h-full w-64 px-5 overflow-y-scroll scroll">
-          {roomList?.map((el) => {
-            return <ChatItem link={el.name} key={el.id} />;
-          })}
-          <ChatItem link={"ddddqwd"} />
-          <ChatItem link={"ddddqwd"} />
-          <ChatItem link={"ddddqwd"} />
-          <ChatItem link={"ddddqwd"} />
-          <ChatItem link={"ddddqwd"} />
-          <ChatItem link={"ddddqwd"} />
-          <ChatItem link={"ddddqwd"} />
-          <ChatItem link={"ddddqwd"} />
-          <ChatItem link={"ddddqwd"} />
-          <ChatItem link={"ddddqwd"} />
-          <ChatItem link={"ddddqwd"} />
-          <ChatItem link={"ddddqwd"} />
-          <ChatItem link={"ddddqwd"} />
-          <ChatItem link={"ddddqwd"} />
-          <ChatItem link={"ddddqwd"} />
-          <ChatItem link={"ddddqwd"} />
-        </ul>
+      <div className="w-full mt-5">
+        <StatusController />
+        <div className="flex flex-col items-center justify-center">
+          <ul className="content-container w-full px-5 overflow-y-scroll scroll">
+            {roomList?.map((el) => {
+              return <ChatItem link={el.name} key={el.id} />;
+            })}
+          </ul>
+        </div>
       </div>
     </nav>
   );

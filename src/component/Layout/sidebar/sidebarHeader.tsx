@@ -1,13 +1,14 @@
-import { FaPlusCircle } from "react-icons/fa";
+import { Link } from "react-router-dom";
+import { FaRegPenToSquare } from "react-icons/fa6";
 
 const SidebarHeader = () => {
   return (
-    <div className="p-5 flex justify-between items-center">
-      <h2 className="font-bold text-xl ml-10">전체</h2>
-      <div className="flex font-bold text-xl items-center mr-10">
-        <FaPlusCircle className="ml-2" color="rgb(146 76 244)" size="24px" />
+    <Link to="/">
+      <div className="hover:bg-hover rounded-lg w-[228px] h-10 mt-5 px-4 flex justify-between items-center">
+        <h2 className="text-xl">새 채팅창</h2>
+        <FaRegPenToSquare className="" size="20px" />
       </div>
-    </div>
+    </Link>
   );
 };
 
