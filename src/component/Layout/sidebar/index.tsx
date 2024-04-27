@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
-import ChatItem from "./chatItem";
 import client from "../../../fetch/backEnd";
+import { isValidRoomList } from "../../../util/isValue";
+import ChatItem from "./chatItem";
 import SidebarHeader from "./sidebarHeader";
 import StatusController from "./statusController";
 
@@ -12,15 +13,21 @@ const Sidebar = () => {
   useEffect(() => {
     const data = async () => {
       try {
-        const s = await client.get("/room");
-        setRoomList(s.data);
+        const { data } = await client.get("/room");
+        console.log(data);
+        if (isValidRoomList(data)) {
+          setRoomList(data);
+        }
+        return data;
       } catch (err) {
         console.log(err);
       }
     };
+
     data();
   }, []);
 
+  console.log(roomList);
   return (
     <nav className="min-w-[260px] px-[12px] h-screen bg-base ">
       <SidebarHeader />
