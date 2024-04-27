@@ -52,3 +52,18 @@ a {
 .content-container {
   height: calc(100vh - 160px);
 }
+
+/* 아래의 모든 코드는 영역::코드로 사용 */
+.scrollBar::-webkit-scrollbar {
+  width: 8px; /* 스크롤바의 너비 */
+  opacity: 0;
+}
+
+.scrollBar::-webkit-scrollbar-thumb {
+  background-color: rgba(193, 193, 193, 0.5); /* 스크롤바의 색상 */
+  border-radius: 10px;
+}
+
+.scrollBarController:hover .scrollBar::-webkit-scrollbar-thumb {
+  background-color: rgba(193, 193, 193, 1); /* 스크롤바의 색상 */
+}

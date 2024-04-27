@@ -99,7 +99,7 @@ export default memo(function CharRoom({ roomId, user }: ChatRoomInterface) {
   };
 
   return (
-    <section className="flex bg-white flex-col m-auto shadow-xl h-[824px] w-full mx-0">
+    <section className="scrollBarController flex bg-white flex-col m-auto shadow-xl h-[824px] w-full mx-0">
       <div>
         <header className="flex items-center bg-white h-20 border-slate-300 ">
           <h2 className="text-4xl pl-5 font-bold">{roomId}</h2>

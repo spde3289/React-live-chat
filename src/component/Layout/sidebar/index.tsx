@@ -14,7 +14,6 @@ const Sidebar = () => {
     const data = async () => {
       try {
         const { data } = await client.get("/room");
-        console.log(data);
         if (isValidRoomList(data)) {
           setRoomList(data);
         }
@@ -27,17 +26,67 @@ const Sidebar = () => {
     data();
   }, []);
 
-  console.log(roomList);
   return (
-    <nav className="min-w-[260px] px-[12px] h-screen bg-base ">
+    <nav className=" min-w-[260px] px-[12px] h-screen bg-base ">
       <SidebarHeader />
       <div className="w-full mt-5">
         <StatusController />
-        <div className="flex flex-col items-center justify-center">
-          <ul className="content-container w-full px-5 overflow-y-scroll scroll">
+        <div className="scrollBarController flex flex-col items-center justify-center">
+          <ul className="content-container w-full px-5 overflow-y-scroll scrollBar">
             {roomList?.map((el) => {
               return <ChatItem link={el.name} key={el.id} />;
             })}
+            <ChatItem link={"dasasdasd"} />
+            <ChatItem link={"dasasdasd"} />
+            <ChatItem link={"dasasdasd"} />
+            <ChatItem link={"dasasdasd"} />
+            <ChatItem link={"dasasdasd"} />
+            <ChatItem link={"dasasdasd"} />
+            <ChatItem link={"dasasdasd"} />
+            <ChatItem link={"dasasdasd"} />
+            <ChatItem link={"dasasdasd"} />
+            <ChatItem link={"dasasdasd"} />
+            <ChatItem link={"dasasdasd"} />
+            <ChatItem link={"dasasdasd"} />
+            <ChatItem link={"dasasdasd"} />
+            <ChatItem link={"dasasdasd"} />
+            <ChatItem link={"dasasdasd"} />
+            <ChatItem link={"dasasdasd"} />
+            <ChatItem link={"dasasdasd"} />
+            <ChatItem link={"dasasdasd"} />
+            <ChatItem link={"dasasdasd"} />
+            <ChatItem link={"dasasdasd"} />
+            <ChatItem link={"dasasdasd"} />
+            <ChatItem link={"dasasdasd"} />
+            <ChatItem link={"dasasdasd"} />
+            <ChatItem link={"dasasdasd"} />
+            <ChatItem link={"dasasdasd"} />
+            <ChatItem link={"dasasdasd"} />
+            <ChatItem link={"dasasdasd"} />
+            <ChatItem link={"dasasdasd"} />
+            <ChatItem link={"dasasdasd"} />
+            <ChatItem link={"dasasdasd"} />
+            <ChatItem link={"dasasdasd"} />
+            <ChatItem link={"dasasdasd"} />
+            <ChatItem link={"dasasdasd"} />
+            <ChatItem link={"dasasdasd"} />
+            <ChatItem link={"dasasdasd"} />
+            <ChatItem link={"dasasdasd"} />
+            <ChatItem link={"dasasdasd"} />
+            <ChatItem link={"dasasdasd"} />
+            <ChatItem link={"dasasdasd"} />
+            <ChatItem link={"dasasdasd"} />
+            <ChatItem link={"dasasdasd"} />
+            <ChatItem link={"dasasdasd"} />
+            <ChatItem link={"dasasdasd"} />
+            <ChatItem link={"dasasdasd"} />
+            <ChatItem link={"dasasdasd"} />
+            <ChatItem link={"dasasdasd"} />
+            <ChatItem link={"dasasdasd"} />
+            <ChatItem link={"dasasdasd"} />
+            <ChatItem link={"dasasdasd"} />
+            <ChatItem link={"dasasdasd"} />
+            <ChatItem link={"dasasdasd"} />
           </ul>
         </div>
       </div>

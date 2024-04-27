@@ -11,8 +11,8 @@ export default function Room({ user }: any) {
 
 
   return (
-    <main className="w-full h-screen text-8xl ">
-      <div className="justify-center flex h-full">
+    <main className="w-full justify-center flex h-screen text-8xl ">
+      <div className="w-[70%] justify-center flex h-full">
         <CharRoom user={user} roomId={decodedParameter} />
       </div>
     </main>

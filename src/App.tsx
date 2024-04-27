@@ -1,4 +1,5 @@
 import { Route, Routes, Outlet } from "react-router-dom";
+import HomePageComponent from "./component/home/index.tsx";
 import Room from "./component/chatRoom/Room.tsx";
 import RootLayout from "./component/Layout/layout.tsx";
 
@@ -19,6 +20,7 @@ function App() {
       <RootLayout>
         <Routes>
           <Route path="/" element={<Outlet />}>
+            <Route path="/" element={<HomePageComponent />} />
             <Route path="/:id" element={<Room user={user} />} />
           </Route>
         </Routes>

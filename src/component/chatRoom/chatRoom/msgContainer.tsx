@@ -31,7 +31,7 @@ export default memo(function MsgContainer({
 
   return (
     <>
-      <div className="flex h-[655px] flex-col p-5 overflow-y-scroll">
+      <div className="flex h-[655px] flex-col p-5 overflow-y-scroll scrollBar">
         {chatLog.map((el: any, idx: any) => {
           return (
             <Msg
