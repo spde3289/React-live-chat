@@ -3,7 +3,7 @@ import { memo, ChangeEvent, KeyboardEvent } from "react";
 interface InputContainerType {
   msg: string;
   onChangeMsg: (e: ChangeEvent<HTMLInputElement>) => void;
-  handleKeypress: (e: KeyboardEvent<HTMLInputElement>) => void;
+  handleKeypress?: (e: KeyboardEvent<HTMLInputElement>) => void;
 }
 
 export default memo(function InputContainer({

@@ -27,7 +27,7 @@ const Sidebar = () => {
   }, []);
 
   return (
-    <nav className=" min-w-[260px] px-[12px] h-screen bg-base ">
+    <nav className="w-[260px] px-[12px] h-screen bg-base ">
       <SidebarHeader />
       <div className="w-full mt-5">
         <StatusController />

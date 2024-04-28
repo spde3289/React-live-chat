@@ -1,7 +1,7 @@
 import { useState, useEffect, memo, KeyboardEvent, ChangeEvent } from "react";
 import { socket } from "../../../soket/soket";
 import MsgContainer from "./msgContainer";
-import InputContainer from "./inputContainer";
+import InputContainer from "../../common/inputContainer";
 
 export type ChatLogType = {
   user: string;
