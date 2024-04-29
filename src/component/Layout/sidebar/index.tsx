@@ -36,57 +36,7 @@ const Sidebar = () => {
             {roomList?.map((el) => {
               return <ChatItem link={el.name} key={el.id} />;
             })}
-            <ChatItem link={"dasasdasd"} />
-            <ChatItem link={"dasasdasd"} />
-            <ChatItem link={"dasasdasd"} />
-            <ChatItem link={"dasasdasd"} />
-            <ChatItem link={"dasasdasd"} />
-            <ChatItem link={"dasasdasd"} />
-            <ChatItem link={"dasasdasd"} />
-            <ChatItem link={"dasasdasd"} />
-            <ChatItem link={"dasasdasd"} />
-            <ChatItem link={"dasasdasd"} />
-            <ChatItem link={"dasasdasd"} />
-            <ChatItem link={"dasasdasd"} />
-            <ChatItem link={"dasasdasd"} />
-            <ChatItem link={"dasasdasd"} />
-            <ChatItem link={"dasasdasd"} />
-            <ChatItem link={"dasasdasd"} />
-            <ChatItem link={"dasasdasd"} />
-            <ChatItem link={"dasasdasd"} />
-            <ChatItem link={"dasasdasd"} />
-            <ChatItem link={"dasasdasd"} />
-            <ChatItem link={"dasasdasd"} />
-            <ChatItem link={"dasasdasd"} />
-            <ChatItem link={"dasasdasd"} />
-            <ChatItem link={"dasasdasd"} />
-            <ChatItem link={"dasasdasd"} />
-            <ChatItem link={"dasasdasd"} />
-            <ChatItem link={"dasasdasd"} />
-            <ChatItem link={"dasasdasd"} />
-            <ChatItem link={"dasasdasd"} />
-            <ChatItem link={"dasasdasd"} />
-            <ChatItem link={"dasasdasd"} />
-            <ChatItem link={"dasasdasd"} />
-            <ChatItem link={"dasasdasd"} />
-            <ChatItem link={"dasasdasd"} />
-            <ChatItem link={"dasasdasd"} />
-            <ChatItem link={"dasasdasd"} />
-            <ChatItem link={"dasasdasd"} />
-            <ChatItem link={"dasasdasd"} />
-            <ChatItem link={"dasasdasd"} />
-            <ChatItem link={"dasasdasd"} />
-            <ChatItem link={"dasasdasd"} />
-            <ChatItem link={"dasasdasd"} />
-            <ChatItem link={"dasasdasd"} />
-            <ChatItem link={"dasasdasd"} />
-            <ChatItem link={"dasasdasd"} />
-            <ChatItem link={"dasasdasd"} />
-            <ChatItem link={"dasasdasd"} />
-            <ChatItem link={"dasasdasd"} />
-            <ChatItem link={"dasasdasd"} />
-            <ChatItem link={"dasasdasd"} />
-            <ChatItem link={"dasasdasd"} />
+
           </ul>
         </div>
       </div>

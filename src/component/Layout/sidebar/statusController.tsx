@@ -1,10 +1,27 @@
+import { useState } from "react";
 import StatusContainer from "./statusContainer";
 
+export type StatusType = "진행중" | "종료됨"
+
 const StatusController = () => {
+  const [currentStatus, setCurrentStatus] = useState<StatusType>("진행중")
+
+  const handleStatus = (name: StatusType) => {
+    setCurrentStatus(name);
+  };
+
   return (
     <div className="mb-5 mx-3 rounded-lg bg-[#EEEEEE] p-1 justify-between flex">
-      <StatusContainer current={true} name="진행중" />
-      <StatusContainer current={false} name="종료됨" />
+      <StatusContainer
+        handleStatus={handleStatus}
+        current={currentStatus}
+        name="진행중"
+      />
+      <StatusContainer
+        handleStatus={handleStatus}
+        current={currentStatus}
+        name="종료됨"
+      />
     </div>
   );
 };

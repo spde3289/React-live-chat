@@ -1,13 +1,21 @@
+import { StatusType } from "./statusController";
+
 interface StatusContainerPropsType {
-  name: string;
-  current: boolean;
+  name: StatusType;
+  current: string;
+  handleStatus: (name: StatusType) => void;
 }
 
-const StatusContainer = ({ name, current }: StatusContainerPropsType) => {
+const StatusContainer = ({
+  name,
+  current,
+  handleStatus,
+}: StatusContainerPropsType) => {
   return (
     <div
+      onClick={() => handleStatus(name)}
       className={`
-      ${current ? "bg-[#FEFEFE] text-black" : "text-gray-500 "}
+      ${current === name ? "bg-[#FEFEFE] text-black" : "text-gray-500 "}
       text-sm font-black text-center w-full py-[6px] rounded-lg
       `}
     >
