@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import client from "../../../fetch/backEnd";
 import { isValidRoomList } from "../../../util/isValue";
 import ChatItem from "./chatItem";
@@ -9,6 +10,10 @@ type RoomListType = { id: number; name: string }[] | null;
 
 const Sidebar = () => {
   const [roomList, setRoomList] = useState<RoomListType>(null);
+  const { pathname } = useLocation()
+
+  const currentPathName = decodeURIComponent(pathname).replace("/", "");
+  console.log(currentPathName);
 
   useEffect(() => {
     const data = async () => {
@@ -34,7 +39,9 @@ const Sidebar = () => {
         <div className="scrollBarController flex flex-col items-center justify-center">
           <ul className="content-container w-full px-5 overflow-y-scroll scrollBar">
             {roomList?.map((el) => {
-              return <ChatItem link={el.name} key={el.id} />;
+              return (
+                <ChatItem path={currentPathName} link={el.name} key={el.id} />
+              );
             })}
 
           </ul>
