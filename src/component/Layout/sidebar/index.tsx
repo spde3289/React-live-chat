@@ -10,10 +10,9 @@ type RoomListType = { id: number; name: string }[] | null;
 
 const Sidebar = () => {
   const [roomList, setRoomList] = useState<RoomListType>(null);
-  const { pathname } = useLocation()
+  const { pathname } = useLocation();
 
   const currentPathName = decodeURIComponent(pathname).replace("/", "");
-  console.log(currentPathName);
 
   useEffect(() => {
     const data = async () => {
@@ -43,7 +42,6 @@ const Sidebar = () => {
                 <ChatItem path={currentPathName} link={el.name} key={el.id} />
               );
             })}
-
           </ul>
         </div>
       </div>

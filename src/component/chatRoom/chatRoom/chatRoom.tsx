@@ -45,13 +45,13 @@ export default memo(function CharRoom({ roomId, user }: ChatRoomInterface) {
     // 방 최초 입장
     socket.emit("join room", user);
     // 소켓 연결
-    socket.on("connect", () => {
-      console.log(socket.connected); // true
-    });
+    // socket.on("connect", () => {
+    //   console.log(socket.connected); // true
+    // });
     // 소켓 끊김
-    socket.on("disconnect", () => {
-      console.log(socket.connected); // false
-    });
+    // socket.on("disconnect", () => {
+    //   console.log(socket.connected); // false
+    // });
     // 채팅 로그
     socket.on("chat message", (remsg: any) => {
       setChatLog((currentMsg) => [
