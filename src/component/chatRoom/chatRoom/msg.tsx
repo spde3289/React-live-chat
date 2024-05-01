@@ -1,12 +1,26 @@
 import { memo } from "react";
+import { ChatLogType } from "@/type/room";
 
-const user: any = {
+interface MsgPropsType {
+  userType: string;
+  chat: ChatLogType;
+}
+
+interface UserTypes {
+  [key: string]: string;
+  me: string;
+  other: string;
+  system: string;
+}
+
+
+const user: UserTypes = {
   me: "rounded-[26px_26px_0_26px] bg-blue-600 ",
   other: "rounded-[26px_26px_26px_0] bg-gray-300",
-  system: ""
+  system: "",
 };
 
-export default memo(function Msg({ userType, chat }: any) {
+export default memo(function Msg({ userType, chat }: MsgPropsType) {
   const type = userType === "me" ? "float-right" : "float-left";
   return (
     <>

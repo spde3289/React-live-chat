@@ -1,10 +1,10 @@
 import { memo, useEffect, useRef } from "react";
 import { socket } from "../../../soket/soket";
 import Msg from "./msg";
-import { ChatLogType } from "./chatRoom";
+import { ChatLogType } from "@/type/room";
 
 interface MsgContainerPropsInterface {
-  chatLog: ChatLogType;
+  chatLog: ChatLogType[];
   user: string | undefined;
 }
 
@@ -31,7 +31,7 @@ export default memo(function MsgContainer({
   return (
     <>
       <div className="flex h-[655px] flex-col p-5 overflow-y-scroll scrollBar">
-        {chatLog.map((el: any, idx: any) => {
+        {chatLog.map((el: ChatLogType, idx: number) => {
           return (
             <Msg
               key={idx}

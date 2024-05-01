@@ -2,32 +2,15 @@ import { useState, useEffect, memo, KeyboardEvent, ChangeEvent } from "react";
 import { socket } from "../../../soket/soket";
 import MsgContainer from "./msgContainer";
 import InputContainer from "../../common/inputContainer";
-
-export type ChatLogType = {
-  user: string;
-  msg: string;
-}[];
+import { ChatLogType } from "@/type/room";
 
 interface ChatRoomInterface {
   roomId: String;
   user: string;
 }
 
-/* function generateRandomNumber() {
-  return Math.floor(Math.random() * 10000)
-    .toString()
-    .padStart(4, "0");
-}
-
-function generateRandomNickname() {
-  return "user_" + generateRandomNumber();
-}
-
-const randomNickname = generateRandomNickname();
-console.log(randomNickname); // 예시: user_1234 */
-
 export default memo(function CharRoom({ roomId, user }: ChatRoomInterface) {
-  const [chatLog, setChatLog] = useState<ChatLogType>([]);
+  const [chatLog, setChatLog] = useState<ChatLogType[]>([]);
   const [msg, setMsg] = useState<string>("");
 
   useEffect(() => {
