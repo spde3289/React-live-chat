@@ -39,45 +39,47 @@ export default memo(function CharRoom({ roomId, user }: ChatRoomInterface) {
         socket.disconnect();
       }
     };
-  }, []);
-
+  }, [roomId]);
+  console.log(chatLog);
+  console.log(msg);
   useEffect(() => {
     // 방 최초 입장
-    socket.emit("join room", user);
+    socket.emit("join room", user, roomId);
     // 소켓 연결
-    // socket.on("connect", () => {
-    //   console.log(socket.connected); // true
-    // });
+    socket.on("connect", () => {
+      console.log(socket.connected); // true
+    });
     // 소켓 끊김
-    // socket.on("disconnect", () => {
-    //   console.log(socket.connected); // false
-    // });
-    // 채팅 로그
+    socket.on("disconnect", () => {
+      console.log(socket.connected); // false
+    });
+    // 채팅 입력
     socket.on("chat message", (remsg: any) => {
+      console.log(remsg);
       setChatLog((currentMsg) => [
         ...currentMsg,
-        { user: remsg.user, msg: remsg.msg },
+        { user: remsg.name, msg: remsg.text },
       ]);
     });
-    socket.on("user list", (list) => {
-      setChatLog((currentMsg) => [
-        ...currentMsg,
-        {
-          user: "system",
-          msg: list[list.length - 1]?.user + " 님이 입장하셨습니다. ",
-        },
-      ]);
+
+    socket.on("chat log", (chatLog: any) => {
+      console.log(JSON.parse(chatLog));
+      const aaa = JSON.parse(chatLog).map((el: any) => {
+        return { user: el.name, msg: el.text };
+      });
+      setChatLog(aaa);
     });
 
     // 언마운트
     return () => {
       setChatLog([]);
       socket.off("user list");
+      socket.off("chat log");
       socket.off("connect");
       socket.off("chat message");
       socket.off("disconnect");
     };
-  }, []);
+  }, [roomId]);
 
   const onChangeMsg = (e: ChangeEvent<HTMLInputElement>): void => {
     setMsg(e.target.value);
