@@ -8,8 +8,6 @@ export default function Room({ user }: any) {
   const path: string = location.pathname.replace("/", "");
   const decodedParameter = decodeURIComponent(path);
 
-
-
   return (
     <main className="w-full justify-center flex h-screen text-8xl ">
       <div className="w-[70%] justify-center flex h-full">
