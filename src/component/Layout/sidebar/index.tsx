@@ -19,12 +19,12 @@ const Sidebar = () => {
   }, []);
 
   return (
-    <nav className="w-[260px] px-[12px] h-screen bg-base ">
+    <nav className="w-[240px] min-w-[240px] px-3 h-screen bg-base">
       <SidebarHeader />
-      <div className="w-full mt-5">
+      <div className="w-full mt-5 px-3">
         <StatusController />
         <div className="scrollBarController flex flex-col items-center justify-center">
-          <ul className="content-container w-full px-5 overflow-y-scroll scrollBar">
+          <ul className="content-container w-full pr-2 overflow-y-scroll scrollBar">
             {roomList?.map((el) => {
               return (
                 <ChatItem path={currentPathName} link={el.name} key={el.id} />
