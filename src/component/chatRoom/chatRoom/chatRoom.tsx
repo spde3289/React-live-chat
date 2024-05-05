@@ -23,8 +23,7 @@ export default memo(function CharRoom({ roomId, user }: ChatRoomInterface) {
       }
     };
   }, [roomId]);
-  console.log(chatLog);
-  console.log(msg);
+
   useEffect(() => {
     // 방 최초 입장
     socket.emit("join room", user, roomId);
@@ -46,7 +45,7 @@ export default memo(function CharRoom({ roomId, user }: ChatRoomInterface) {
     });
 
     socket.on("chat log", (chatLog: any) => {
-      console.log(JSON.parse(chatLog));
+      // console.log(JSON.parse(chatLog));
       const aaa = JSON.parse(chatLog).map((el: any) => {
         return { user: el.name, msg: el.text };
       });
@@ -64,13 +63,13 @@ export default memo(function CharRoom({ roomId, user }: ChatRoomInterface) {
     };
   }, [roomId]);
 
-  const onChangeMsg = (e: ChangeEvent<HTMLInputElement>): void => {
+  const onChangeMsg = (e: ChangeEvent<HTMLTextAreaElement>): void => {
     setMsg(e.target.value);
   };
 
-  const handleKeypress = (e: KeyboardEvent<HTMLInputElement>): void => {
+  const handleKeypress = (e: KeyboardEvent<HTMLTextAreaElement>): void => {
     //Enter을 누르게 되면 실행
-    if (e.key === "Enter") {
+    if (e.key === "Enter" && !e.shiftKey) {
       if (msg) {
         SendMsg();
       }
