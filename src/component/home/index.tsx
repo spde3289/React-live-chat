@@ -1,19 +1,10 @@
-import { useEffect, useState, ChangeEvent, KeyboardEvent } from "react";
+import { useState, ChangeEvent, KeyboardEvent } from "react";
 import { CreateRoom } from "@/fetch/roomFatch";
+import newId from "@/util/newId";
 import InputContainer from "../common/inputContainer";
-
-const data = {
-  a: "aa",
-  b: "bb",
-};
 
 const HomePageComponent = () => {
   const [value, setValue] = useState<string>("");
-  useEffect(() => {
-    CreateRoom(data).then((res) => {
-      console.log(res);
-    });
-  }, []);
 
   const onChangeMsg = (e: ChangeEvent<HTMLTextAreaElement>): void => {
     setValue(e.target.value);
@@ -21,14 +12,23 @@ const HomePageComponent = () => {
 
   const handleKeypress = (e: KeyboardEvent<HTMLTextAreaElement>): void => {
     //Enter을 누르게 되면 실행
-    console.log(e.shiftKey)
+    console.log(e.shiftKey);
+
     if (e.key === "Enter" && !e.shiftKey) {
-      SendMsg();
+      const data = {
+        id: newId(),
+        name: value,
+        userList: [],
+        status: "ongoing",
+      };
+      CreateRoom(data).then((res) => {
+        console.log(res);
+      });
     }
   };
 
   /** 채팅 입력시 메세지, id값 보냄 */
-  const SendMsg = () => {};
+  // const SendMsg = () => {};
 
   return (
     <main className="w-full">
