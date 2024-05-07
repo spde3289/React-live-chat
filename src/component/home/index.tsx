@@ -1,9 +1,16 @@
 import { useState, ChangeEvent, KeyboardEvent } from "react";
 import { CreateRoom } from "@/fetch/roomFatch";
+import { useRoomListContext } from "@/context/useRoomListContext";
+import { RoomListType } from "@/type/room";
+
 import newId from "@/util/newId";
 import InputContainer from "../common/inputContainer";
 
 const HomePageComponent = () => {
+  const { updateValue } = useRoomListContext() as {
+    value: RoomListType;
+    updateValue: (newValue: RoomListType) => void;
+  };
   const [value, setValue] = useState<string>("");
 
   const onChangeMsg = (e: ChangeEvent<HTMLTextAreaElement>): void => {
@@ -23,6 +30,7 @@ const HomePageComponent = () => {
       };
       CreateRoom(data).then((res) => {
         console.log(res);
+        updateValue(res)
       });
     }
   };
