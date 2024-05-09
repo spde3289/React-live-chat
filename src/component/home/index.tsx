@@ -1,17 +1,14 @@
 import { useState, ChangeEvent, KeyboardEvent } from "react";
+import { useNavigate } from "react-router-dom";
 import { CreateRoom } from "@/fetch/roomFatch";
 import { useRoomListContext } from "@/context/useRoomListContext";
-import { RoomListType } from "@/type/room";
-
 import newId from "@/util/newId";
 import InputContainer from "../common/inputContainer";
 
 const HomePageComponent = () => {
-  const { updateValue } = useRoomListContext() as {
-    value: RoomListType;
-    updateValue: (newValue: RoomListType) => void;
-  };
+  const { updateValue } = useRoomListContext();
   const [value, setValue] = useState<string>("");
+  const navigate = useNavigate();
 
   const onChangeMsg = (e: ChangeEvent<HTMLTextAreaElement>): void => {
     setValue(e.target.value);
@@ -19,8 +16,6 @@ const HomePageComponent = () => {
 
   const handleKeypress = (e: KeyboardEvent<HTMLTextAreaElement>): void => {
     //Enter을 누르게 되면 실행
-    console.log(e.shiftKey);
-
     if (e.key === "Enter" && !e.shiftKey) {
       const data = {
         id: newId(),
@@ -30,13 +25,11 @@ const HomePageComponent = () => {
       };
       CreateRoom(data).then((res) => {
         console.log(res);
-        updateValue(res)
+        updateValue(res);
+        navigate(`/${value}`);
       });
     }
   };
-
-  /** 채팅 입력시 메세지, id값 보냄 */
-  // const SendMsg = () => {};
 
   return (
     <main className="w-full">

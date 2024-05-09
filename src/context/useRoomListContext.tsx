@@ -1,5 +1,6 @@
 import { createContext, useState, useContext } from "react";
 import { RoomListType } from "@/type/room";
+
 const RoomListContext: any = createContext<
   | { value: RoomListType; updateValue: (newValue: RoomListType) => void }
   | undefined
@@ -26,7 +27,12 @@ const useMyContext = () => {
   return { value, updateValue };
 };
 
-export function useRoomListContext() {
+type useRoomListContextRetuenType = {
+  value: RoomListType;
+  updateValue: (newValue: RoomListType) => void;
+};
+
+export function useRoomListContext(): useRoomListContextRetuenType {
   return useContext(RoomListContext);
 }
 

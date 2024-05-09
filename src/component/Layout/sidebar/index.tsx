@@ -2,20 +2,15 @@ import { useEffect } from "react";
 import { useRoomListContext } from "@/context/useRoomListContext";
 import { useLocation } from "react-router-dom";
 import { getRoomList } from "@/fetch/roomFatch";
-import { RoomListType } from "@/type/room";
 import SidebarHeader from "./sidebarHeader";
 import StatusController from "./statusController";
 import ChatItem from "./chatItem";
 
 const Sidebar = () => {
   // const [roomList, setRoomList] = useState<RoomListType>(null);
-  const { value, updateValue } = useRoomListContext() as {
-    value: RoomListType;
-    updateValue: (newValue: RoomListType) => void;
-  };
+  const { value, updateValue } = useRoomListContext()
   const { pathname } = useLocation();
-  console.log(useRoomListContext());
-  console.log(value);
+
   const currentPathName = decodeURIComponent(pathname).replace("/", "");
 
   useEffect(() => {

@@ -1,19 +1,27 @@
 import { useState, useEffect, memo, KeyboardEvent, ChangeEvent } from "react";
 import { socket } from "../../../soket/soket";
+import { useRoomListContext } from "@/context/useRoomListContext";
+import { ChatLogType } from "@/type/room";
 import MsgContainer from "./msgContainer";
 import InputContainer from "../../common/inputContainer";
-import { ChatLogType } from "@/type/room";
+import { getRoomList } from "@/fetch/roomFatch";
 
 interface ChatRoomInterface {
-  roomId: String;
+  roomName: String;
   user: string;
 }
 
-export default memo(function CharRoom({ roomId, user }: ChatRoomInterface) {
+export default memo(function CharRoom({ roomName, user }: ChatRoomInterface) {
   const [chatLog, setChatLog] = useState<ChatLogType[]>([]);
   const [msg, setMsg] = useState<string>("");
+  const { value, updateValue } = useRoomListContext()
 
   useEffect(() => {
+    if (value === null) {
+      getRoomList().then((res) => {
+        updateValue(res);
+      });
+    }
     socket.connect();
     // 언마운트
     return () => {
@@ -22,11 +30,16 @@ export default memo(function CharRoom({ roomId, user }: ChatRoomInterface) {
         socket.disconnect();
       }
     };
-  }, [roomId]);
+  }, [roomName]);
 
   useEffect(() => {
     // 방 최초 입장
-    socket.emit("join room", user, roomId);
+    if (value)
+      socket.emit(
+        "join room",
+        user,
+        value?.find((el) => el.name === roomName)?.id
+      );
     // 소켓 연결
     socket.on("connect", () => {
       console.log(socket.connected); // true
@@ -37,7 +50,6 @@ export default memo(function CharRoom({ roomId, user }: ChatRoomInterface) {
     });
     // 채팅 입력
     socket.on("chat message", (remsg: any) => {
-      console.log(remsg);
       setChatLog((currentMsg) => [
         ...currentMsg,
         { user: remsg.name, msg: remsg.text },
@@ -61,7 +73,7 @@ export default memo(function CharRoom({ roomId, user }: ChatRoomInterface) {
       socket.off("chat message");
       socket.off("disconnect");
     };
-  }, [roomId]);
+  }, [roomName]);
 
   const onChangeMsg = (e: ChangeEvent<HTMLTextAreaElement>): void => {
     setMsg(e.target.value);
@@ -86,7 +98,7 @@ export default memo(function CharRoom({ roomId, user }: ChatRoomInterface) {
     <section className="scrollBarController flex bg-white flex-col m-auto shadow-xl h-[824px] w-full mx-0">
       <div>
         <header className="flex items-center bg-white h-20 border-slate-300 ">
-          <h2 className="text-4xl pl-5 font-bold">{roomId}</h2>
+          <h2 className="text-4xl pl-5 font-bold">{roomName}</h2>
         </header>
         <div className="h-2 bg-gradient-to-b from-gray-200"></div>
       </div>

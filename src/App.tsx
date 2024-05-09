@@ -9,10 +9,6 @@ function generateRandomNumber() {
     .padStart(4, "0");
 }
 
-/* function generateRandomNickname() {
-  return "user_" + generateRandomNumber();
-}
- */
 function App() {
   const user = "user_" + generateRandomNumber();
   return (
@@ -21,7 +17,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Outlet />}>
             <Route path="/" element={<HomePageComponent />} />
-            <Route path="/:id" element={<Room user={user} />} />
+            <Route path="/:id" element={<Room user={user} />}></Route>
           </Route>
         </Routes>
       </RootLayout>
