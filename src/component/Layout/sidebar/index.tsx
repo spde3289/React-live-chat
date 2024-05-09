@@ -7,8 +7,7 @@ import StatusController from "./statusController";
 import ChatItem from "./chatItem";
 
 const Sidebar = () => {
-  // const [roomList, setRoomList] = useState<RoomListType>(null);
-  const { value, updateValue } = useRoomListContext()
+  const { value, updateValue } = useRoomListContext();
   const { pathname } = useLocation();
 
   const currentPathName = decodeURIComponent(pathname).replace("/", "");
@@ -28,7 +27,11 @@ const Sidebar = () => {
           <ul className="content-container w-full pr-2 overflow-y-scroll scrollBar">
             {value?.map((el) => {
               return (
-                <ChatItem path={currentPathName} link={el.name} key={el.id} />
+                <ChatItem
+                  path={currentPathName}
+                  link={el.roomName}
+                  key={el.id}
+                />
               );
             })}
           </ul>

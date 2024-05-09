@@ -14,7 +14,7 @@ interface ChatRoomInterface {
 export default memo(function CharRoom({ roomName, user }: ChatRoomInterface) {
   const [chatLog, setChatLog] = useState<ChatLogType[]>([]);
   const [msg, setMsg] = useState<string>("");
-  const { value, updateValue } = useRoomListContext()
+  const { value, updateValue } = useRoomListContext();
 
   useEffect(() => {
     if (value === null) {
@@ -38,7 +38,7 @@ export default memo(function CharRoom({ roomName, user }: ChatRoomInterface) {
       socket.emit(
         "join room",
         user,
-        value?.find((el) => el.name === roomName)?.id
+        value?.find((el) => el.roomName === roomName)?.id
       );
     // 소켓 연결
     socket.on("connect", () => {
@@ -56,8 +56,9 @@ export default memo(function CharRoom({ roomName, user }: ChatRoomInterface) {
       ]);
     });
 
-    socket.on("chat log", (chatLog: any) => {
+    socket.on("chat log", (chatLog: string) => {
       // console.log(JSON.parse(chatLog));
+      console.log(chatLog);
       const aaa = JSON.parse(chatLog).map((el: any) => {
         return { user: el.name, msg: el.text };
       });

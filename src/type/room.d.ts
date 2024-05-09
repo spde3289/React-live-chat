@@ -1,4 +1,9 @@
-export type RoomListType = { id: number; name: string }[] | null;
+export type RoomListType ={
+      id: string;
+      roomName: string;
+      status: string;
+    }[]
+  | null;
 
 export type ChatLogType = {
   user: string;

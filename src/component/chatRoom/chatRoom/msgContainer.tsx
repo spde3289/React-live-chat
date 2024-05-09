@@ -12,7 +12,6 @@ export default memo(function MsgContainer({
   chatLog,
   user,
 }: MsgContainerPropsInterface) {
-  // const [newMember, setNewMember] = useState<any>();
   const scrollRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {

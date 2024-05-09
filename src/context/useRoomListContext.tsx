@@ -1,15 +1,19 @@
 import { createContext, useState, useContext } from "react";
 import { RoomListType } from "@/type/room";
 
-const RoomListContext: any = createContext<
-  | { value: RoomListType; updateValue: (newValue: RoomListType) => void }
-  | undefined
->(undefined);
+type useRoomListContextRetuenType = {
+  value: RoomListType;
+  updateValue: (newValue: RoomListType) => void;
+};
+
+const RoomListContext = createContext<useRoomListContextRetuenType>({
+  value: null,
+  updateValue: () => {}, // 기본값으로 빈 함수를 설정
+});
 
 type RoomListProviderType = {
   children: React.ReactNode;
 };
-
 const RoomListProvider = ({ children }: RoomListProviderType) => {
   const RoomList = useMyContext();
 
@@ -25,11 +29,6 @@ const useMyContext = () => {
   };
 
   return { value, updateValue };
-};
-
-type useRoomListContextRetuenType = {
-  value: RoomListType;
-  updateValue: (newValue: RoomListType) => void;
 };
 
 export function useRoomListContext(): useRoomListContextRetuenType {

@@ -5,7 +5,11 @@ import { useRoomListContext } from "@/context/useRoomListContext";
 import newId from "@/util/newId";
 import InputContainer from "../common/inputContainer";
 
-const HomePageComponent = ({ user }: { user: string }) => {
+interface HomePageComponentType {
+  user: string;
+}
+
+const HomePageComponent = ({ user }: HomePageComponentType) => {
   const { updateValue } = useRoomListContext();
   const [value, setValue] = useState<string>("");
   const navigate = useNavigate();

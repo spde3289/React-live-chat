@@ -2,7 +2,11 @@ import { useLocation, Navigate } from "react-router-dom";
 import CharRoom from "./chatRoom";
 import { useRoomListContext } from "@/context/useRoomListContext";
 
-export default function Room({ user }: any) {
+interface RoomType{
+  user: string
+}
+
+export default function Room({ user }: RoomType) {
   const location = useLocation();
   const { value } = useRoomListContext()
 

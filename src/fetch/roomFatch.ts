@@ -1,12 +1,12 @@
 import { Get, Post } from "./backEnd";
-import { isValidRoomList } from "@/util/isValue";
+import { isCheckRoomList } from "@/util/isCheckRoomList";
 import { RoomListType } from "@/type/room";
 
 export const getRoomList = async () => {
   return Get<RoomListType>("/room")
     .then((res) => {
       const data = res.data;
-      if (isValidRoomList(data)) {
+      if (isCheckRoomList(data)) {
         return data;
       }
       return null;
@@ -17,7 +17,15 @@ export const getRoomList = async () => {
     });
 };
 
-export const CreateRoom = async (data: any) => {
+interface ReqBodyType {
+  id: string;
+  name: string;
+  user: string;
+  status: string;
+}
+
+export const CreateRoom = async (data: ReqBodyType) => {
+  console.log(data);
   return Post<any>("/room", data)
     .then((res: any) => {
       return res.data;
