@@ -16,7 +16,7 @@ function App() {
       <RootLayout>
         <Routes>
           <Route path="/" element={<Outlet />}>
-            <Route path="/" element={<HomePageComponent />} />
+            <Route path="/" element={<HomePageComponent user={user} />} />
             <Route path="/:id" element={<Room user={user} />}></Route>
           </Route>
         </Routes>

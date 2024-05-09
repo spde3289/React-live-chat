@@ -5,7 +5,7 @@ import { useRoomListContext } from "@/context/useRoomListContext";
 import newId from "@/util/newId";
 import InputContainer from "../common/inputContainer";
 
-const HomePageComponent = () => {
+const HomePageComponent = ({ user }: { user: string }) => {
   const { updateValue } = useRoomListContext();
   const [value, setValue] = useState<string>("");
   const navigate = useNavigate();
@@ -20,7 +20,7 @@ const HomePageComponent = () => {
       const data = {
         id: newId(),
         name: value,
-        userList: [],
+        user: user,
         status: "ongoing",
       };
       CreateRoom(data).then((res) => {
