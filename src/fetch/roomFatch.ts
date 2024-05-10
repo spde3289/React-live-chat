@@ -26,8 +26,8 @@ interface ReqBodyType {
 
 export const CreateRoom = async (data: ReqBodyType) => {
   console.log(data);
-  return Post<ReqBodyType>("/room", data)
-    .then((res) => {
+  return Post<any>("/room", data)
+    .then((res: any) => {
       return res.data;
     })
     .catch((error) => {

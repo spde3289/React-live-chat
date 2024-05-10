@@ -21,16 +21,16 @@ const user: UserTypes = {
 
 export default memo(function Msg({ userType, chat }: MsgPropsType) {
   const type = userType === "me" ? "float-right" : "float-left";
-  
   return (
     <>
       <div className="mb-4">
         <div className={type}>
           <div className="text-xl">{chat.user}</div>
           <div
-            className={`${user[userType]} break-words w-auto max-w-md text-2xl p-2`}
+            className={`${user[userType]} message-container break-words w-auto max-w-md text-2xl p-2`}
           >
             {chat.msg}
+            <br />
           </div>
         </div>
       </div>

@@ -16,6 +16,7 @@ export default memo(function CharRoom({ roomName, user }: ChatRoomInterface) {
   const [msg, setMsg] = useState<string>("");
   const { value, updateValue } = useRoomListContext();
 
+  console.log(roomName);
   useEffect(() => {
     if (value === null) {
       getRoomList().then((res) => {
@@ -35,10 +36,11 @@ export default memo(function CharRoom({ roomName, user }: ChatRoomInterface) {
   useEffect(() => {
     // 방 최초 입장
     if (value)
+      console.log(value);
       socket.emit(
         "join room",
         user,
-        value?.find((el) => el.roomName === roomName)?.id
+        roomName
       );
     // 소켓 연결
     socket.on("connect", () => {
