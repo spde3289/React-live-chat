@@ -1,14 +1,15 @@
-import { useState } from "react";
 import StatusContainer from "./statusContainer";
 import { StatusType } from "@/type/room";
 
-const StatusController = () => {
-  const [currentStatus, setCurrentStatus] = useState<StatusType>("진행중");
+interface StatusControllerPropsType {
+  handleStatus: (name: StatusType) => void;
+  currentStatus: StatusType;
+}
 
-  const handleStatus = (name: StatusType) => {
-    setCurrentStatus(name);
-  };
-
+const StatusController = ({
+  handleStatus,
+  currentStatus,
+}: StatusControllerPropsType) => {
   return (
     <>
       <div className="relative mb-5 rounded-lg bg-[#EEEEEE] p-1 justify-between flex">
@@ -26,6 +27,5 @@ const StatusController = () => {
     </>
   );
 };
-
 
 export default StatusController;

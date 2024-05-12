@@ -22,7 +22,6 @@ const RoomListProvider = ({ children }: RoomListProviderType) => {
 
 const useMyContext = () => {
   const [roomList, setroomList] = useState<RoomListType>(null);
-
   // 값을 업데이트하는 함수
   const setRoomList = (newRoomList: RoomListType) => {
     setroomList(newRoomList);
