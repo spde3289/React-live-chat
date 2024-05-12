@@ -1,4 +1,4 @@
-import { StatusType } from "./statusController";
+import { StatusType } from "@/type/room";
 
 interface StatusContainerPropsType {
   name: StatusType;

@@ -2,13 +2,13 @@ import { createContext, useState, useContext } from "react";
 import { RoomListType } from "@/type/room";
 
 type useRoomListContextRetuenType = {
-  value: RoomListType;
-  updateValue: (newValue: RoomListType) => void;
+  roomList: RoomListType;
+  setRoomList: (newRoomList: RoomListType) => void;
 };
 
 const RoomListContext = createContext<useRoomListContextRetuenType>({
-  value: null,
-  updateValue: () => {}, // 기본값으로 빈 함수를 설정
+  roomList: null,
+  setRoomList: () => {}, // 기본값으로 빈 함수를 설정
 });
 
 type RoomListProviderType = {
@@ -21,14 +21,14 @@ const RoomListProvider = ({ children }: RoomListProviderType) => {
 };
 
 const useMyContext = () => {
-  const [value, setValue] = useState<RoomListType>(null);
+  const [roomList, setroomList] = useState<RoomListType>(null);
 
   // 값을 업데이트하는 함수
-  const updateValue = (newValue: RoomListType) => {
-    setValue(newValue);
+  const setRoomList = (newRoomList: RoomListType) => {
+    setroomList(newRoomList);
   };
 
-  return { value, updateValue };
+  return { roomList, setRoomList };
 };
 
 export function useRoomListContext(): useRoomListContextRetuenType {

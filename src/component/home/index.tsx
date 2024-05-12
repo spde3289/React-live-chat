@@ -10,7 +10,7 @@ interface HomePageComponentType {
 }
 
 const HomePageComponent = ({ user }: HomePageComponentType) => {
-  const { updateValue } = useRoomListContext();
+  const { setRoomList } = useRoomListContext();
   const [value, setValue] = useState<string>("");
   const navigate = useNavigate();
 
@@ -29,7 +29,7 @@ const HomePageComponent = ({ user }: HomePageComponentType) => {
       };
       CreateRoom(data).then((res) => {
         console.log(res);
-        updateValue(res);
+        setRoomList(res);
         navigate(`/${value}`);
       });
     }
@@ -38,7 +38,7 @@ const HomePageComponent = ({ user }: HomePageComponentType) => {
   return (
     <main className="w-full">
       <div className="w-[60%] flex-col justify-center items-center h-full pb-5 flex m-0 mx-auto">
-        <div className="flex-col justify-center items-center h-full flex">
+        <div className="flex-col text-2xl font-bold justify-center items-center h-full flex">
           자유롭게 이용해주세요!
         </div>
         <InputContainer

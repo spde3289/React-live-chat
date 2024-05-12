@@ -1,10 +1,8 @@
 import { useState, useEffect, memo, KeyboardEvent, ChangeEvent } from "react";
 import { socket } from "../../../soket/soket";
-import { useRoomListContext } from "@/context/useRoomListContext";
 import { ChatLogType } from "@/type/room";
 import MsgContainer from "./msgContainer";
 import InputContainer from "../../common/inputContainer";
-import { getRoomList } from "@/fetch/roomFatch";
 
 interface ChatRoomInterface {
   roomName: String;
@@ -14,15 +12,8 @@ interface ChatRoomInterface {
 export default memo(function CharRoom({ roomName, user }: ChatRoomInterface) {
   const [chatLog, setChatLog] = useState<ChatLogType[]>([]);
   const [msg, setMsg] = useState<string>("");
-  const { value, updateValue } = useRoomListContext();
 
-  console.log(roomName);
   useEffect(() => {
-    if (value === null) {
-      getRoomList().then((res) => {
-        updateValue(res);
-      });
-    }
     socket.connect();
     // 언마운트
     return () => {

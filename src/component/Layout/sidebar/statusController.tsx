@@ -1,7 +1,6 @@
 import { useState } from "react";
 import StatusContainer from "./statusContainer";
-
-export type StatusType = "진행중" | "종료됨";
+import { StatusType } from "@/type/room";
 
 const StatusController = () => {
   const [currentStatus, setCurrentStatus] = useState<StatusType>("진행중");

@@ -7,14 +7,14 @@ import StatusController from "./statusController";
 import ChatItem from "./chatItem";
 
 const Sidebar = () => {
-  const { value, updateValue } = useRoomListContext();
+  const { roomList, setRoomList } = useRoomListContext();
   const { pathname } = useLocation();
 
   const currentPathName = decodeURIComponent(pathname).replace("/", "");
 
   useEffect(() => {
     getRoomList().then((response) => {
-      updateValue(response);
+      setRoomList(response);
     });
   }, []);
 
@@ -25,7 +25,7 @@ const Sidebar = () => {
         <StatusController />
         <div className="scrollBarController flex flex-col items-center justify-center">
           <ul className="content-container w-full pr-2 overflow-y-scroll scrollBar">
-            {value?.map((el) => {
+            {roomList?.map((el) => {
               return (
                 <ChatItem
                   path={currentPathName}
