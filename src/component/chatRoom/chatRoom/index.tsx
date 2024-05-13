@@ -85,7 +85,7 @@ export default memo(function CharRoom({ roomName, user }: ChatRoomInterface) {
     <section className="scrollBarController flex bg-white flex-col m-auto shadow-xl h-[824px] w-full mx-0">
       <div>
         <header className="flex items-center bg-white h-20 border-slate-300 ">
-          <h2 className="text-4xl pl-5 font-bold">{roomName}</h2>
+          {/* <h2 className="text-4xl pl-5 font-bold">{roomName}</h2> */}
         </header>
         <div className="h-2 bg-gradient-to-b from-gray-200"></div>
       </div>

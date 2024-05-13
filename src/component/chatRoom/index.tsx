@@ -10,7 +10,7 @@ export default function Room({ user }: RoomType) {
 
   const path: string = location.pathname.replace("/", "");
   const decodedParameter = decodeURIComponent(path) + location.hash;
-  
+  console.log(path);
   return (
     <main className="w-full justify-center flex h-screen text-8xl ">
       <div className="w-[70%] justify-center flex h-full">

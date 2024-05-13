@@ -1,6 +1,6 @@
 import { Route, Routes, Outlet } from "react-router-dom";
 import HomePageComponent from "./component/home/index.tsx";
-import Room from "./component/chatRoom/Room.tsx";
+import Room from "./component/chatRoom";
 import RootLayout from "./component/Layout/layout.tsx";
 
 function generateRandomNumber() {

@@ -21,16 +21,17 @@ const HomePageComponent = ({ user }: HomePageComponentType) => {
   const handleKeypress = (e: KeyboardEvent<HTMLTextAreaElement>): void => {
     //Enter을 누르게 되면 실행
     if (e.key === "Enter" && !e.shiftKey) {
+      const id = newId();
+
       const data = {
-        id: newId(),
+        id: id,
         name: value,
         user: user,
-        status: "ongoing",
+        status: "진행중",
       };
       CreateRoom(data).then((res) => {
-        console.log(res);
         setRoomList(res);
-        navigate(`/${value}`);
+        navigate(`/${id}`);
       });
     }
   };

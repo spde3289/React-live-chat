@@ -23,7 +23,7 @@ const Sidebar = () => {
   const handleStatus = (name: StatusType) => {
     setCurrentStatus(name);
   };
-
+  console.log(roomList);
   return (
     <nav className="w-[240px] min-w-[240px] px-3 h-screen bg-base">
       <SidebarHeader />
@@ -36,13 +36,14 @@ const Sidebar = () => {
           <ul className="content-container w-full pr-2 overflow-y-scroll scrollBar">
             {roomList?.map((el) => {
               return (
-                currentStatus === el.status && 
+                currentStatus === el.status && (
                   <ChatItem
+                    name={el.roomName}
                     path={currentPathName}
-                    link={el.roomName}
+                    link={el.id}
                     key={el.id}
                   />
-                
+                )
               );
             })}
           </ul>
