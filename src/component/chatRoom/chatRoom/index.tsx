@@ -9,7 +9,7 @@ interface ChatRoomInterface {
   user: string;
 }
 
-export default memo(function CharRoom({ roomName, user }: ChatRoomInterface) {
+export default memo(function ChatRoom({ roomName, user }: ChatRoomInterface) {
   const [chatLog, setChatLog] = useState<ChatLogType[]>([]);
   const [msg, setMsg] = useState<string>("");
 
@@ -28,13 +28,13 @@ export default memo(function CharRoom({ roomName, user }: ChatRoomInterface) {
     // 방 최초 입장
     socket.emit("join room", user, roomName);
     // 소켓 연결
-    socket.on("connect", () => {
-      console.log(socket.connected); // true
-    });
+    // socket.on("connect", () => {
+    //   console.log(socket.connected); // true
+    // });
     // 소켓 끊김
-    socket.on("disconnect", () => {
-      console.log(socket.connected); // false
-    });
+    // socket.on("disconnect", () => {
+    //   console.log(socket.connected); // false
+    // });
     // 채팅 입력
     socket.on("chat message", (remsg: any) => {
       setChatLog((currentMsg) => [
@@ -44,11 +44,10 @@ export default memo(function CharRoom({ roomName, user }: ChatRoomInterface) {
     });
 
     socket.on("chat log", (chatLog: string) => {
-      // console.log(JSON.parse(chatLog));
-      const aaa = JSON.parse(chatLog).map((el: any) => {
+      const chatLogParser = JSON.parse(chatLog).map((el: any) => {
         return { user: el.name, msg: el.text };
       });
-      setChatLog(aaa);
+      setChatLog(chatLogParser);
     });
 
     // 언마운트

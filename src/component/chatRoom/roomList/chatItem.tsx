@@ -7,7 +7,6 @@ interface ChatItemProps {
 }
 
 export default function ChatItem({ link, path, name }: ChatItemProps) {
-
   return (
     <Link to={link}>
       <li

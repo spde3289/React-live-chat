@@ -1,51 +1,38 @@
-import { useEffect, useState } from "react";
-import { useRoomListContext } from "@/context/useRoomListContext";
 import { useLocation } from "react-router-dom";
-import { getRoomList } from "@/fetch/roomFatch";
 import SidebarHeader from "./sidebarHeader";
-import StatusController from "./statusController";
-import ChatItem from "./chatItem";
-import { StatusType } from "@/type/room";
+import { HiHome } from "react-icons/hi";
+import { FaThList } from "react-icons/fa";
+import NavItem from "./navItem";
 
 const Sidebar = () => {
-  const { roomList, setRoomList } = useRoomListContext();
-  const [currentStatus, setCurrentStatus] = useState<StatusType>("진행중");
   const { pathname } = useLocation();
 
-  const currentPathName = decodeURIComponent(pathname).replace("/", "");
+  const currentPathName = "/" + decodeURIComponent(pathname).split("/")[1];
 
-  useEffect(() => {
-    getRoomList().then((response) => {
-      setRoomList(response);
-    });
-  }, []);
-
-  const handleStatus = (name: StatusType) => {
-    setCurrentStatus(name);
-  };
-  console.log(roomList);
   return (
-    <nav className="w-[240px] min-w-[240px] px-3 h-screen bg-base">
+    <nav className="w-[60px] h-screen bg-base">
       <SidebarHeader />
-      <div className="w-full mt-5 px-3">
-        <StatusController
-          handleStatus={handleStatus}
-          currentStatus={currentStatus}
-        />
-        <div className="scrollBarController flex flex-col items-center justify-center">
-          <ul className="content-container w-full pr-2 overflow-y-scroll scrollBar">
-            {roomList?.map((el) => {
-              return (
-                currentStatus === el.status && (
-                  <ChatItem
-                    name={el.roomName}
-                    path={currentPathName}
-                    link={el.id}
-                    key={el.id}
-                  />
-                )
-              );
-            })}
+      <div className="w-full">
+        <div className="flex flex-col items-center justify-center">
+          <ul className="w-full">
+            <NavItem link="/" currentItem={currentPathName}>
+              <HiHome
+                className={`${
+                  currentPathName === "/" ? "fill-white" : ""
+                } hover:fill-white`}
+                size="24"
+                color="#9aafb1"
+              />
+            </NavItem>
+            <NavItem link="/list" currentItem={currentPathName}>
+              <FaThList
+                className={`${
+                  currentPathName === "/list" ? "fill-white" : ""
+                } hover:fill-white`}
+                size="20"
+                color="#9aafb1"
+              />
+            </NavItem>
           </ul>
         </div>
       </div>
