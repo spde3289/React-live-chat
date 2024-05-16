@@ -71,3 +71,14 @@ a {
 .message-container {
   white-space: pre-line;
 }
+
+.after {
+  content: "";
+  /* background: #ffffff; */
+  height: 3px;
+  display: block;
+  margin-top: 10px;
+  max-width: 50px;
+  background: rgba(72, 100, 119, 1);
+  margin-top: 5px;
+}

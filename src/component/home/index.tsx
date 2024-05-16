@@ -31,18 +31,20 @@ const HomePageComponent = ({ user }: HomePageComponentType) => {
       };
       CreateRoom(data).then((res) => {
         setRoomList(res);
-        navigate(`/${id}`);
+        navigate(`/list/${id}`);
       });
     }
   };
 
   return (
     <main className="w-full">
-      <div className="w-[60%] flex-col justify-center items-center h-full pb-5 flex m-0 mx-auto">
-        <div className="flex-col text-2xl font-bold justify-center items-center h-full flex">
-          자유롭게 이용해주세요!
+      <div className="flex-col w-fit justify-center items-center h-full pb-5 flex mx-auto">
+        <div className="text-left w-full flex-col text-4xl font-bold mb-7">
+          문의 등록
+          <span className="after"></span>
         </div>
         <InputContainer
+          placeholder="원하는 메세지를 입력해주세요!"
           onChangeMsg={onChangeMsg}
           msg={value}
           handleKeypress={handleKeypress}

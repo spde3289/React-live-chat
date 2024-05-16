@@ -12,7 +12,7 @@ const StatusController = ({
 }: StatusControllerPropsType) => {
   return (
     <>
-      <div className="relative mb-5 rounded-lg bg-[#EEEEEE] p-1 justify-between flex">
+      <div className="relative mb-5 p-1 justify-between">
         <StatusContainer
           handleStatus={handleStatus}
           current={currentStatus}

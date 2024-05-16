@@ -17,37 +17,48 @@ export default function Room() {
     });
   }, []);
 
-  const currentPathName = "/" + decodeURIComponent(pathname).split("/")[1];
+  const splitPath = decodeURIComponent(pathname).split("/");
+  const currentPathName = "/" + splitPath[splitPath.length - 1];
 
   const handleStatus = (name: StatusType) => {
     setCurrentStatus(name);
   };
 
   return (
-    <main className="w-full justify-center flex h-screen text-8xl ">
-      <div className="w-full justify-center flex h-full">
-        <div className="w-[240px]">
-          <StatusController
-            handleStatus={handleStatus}
-            currentStatus={currentStatus}
-          />
-          <ul>
-            {roomList?.map((el) => {
-              return (
-                currentStatus === el.status && (
-                  <ChatItem
-                    name={el.roomName}
-                    path={currentPathName}
-                    link={el.id}
-                    key={el.id}
-                  />
-                )
-              );
-            })}
-          </ul>
+    <main className="w-full h-screen text-8xl">
+      {currentPathName === "/list" && (
+        <div className="w-[1024px] flex flex-col h-full m-0 mx-auto">
+          <div className="text-center w-fit flex-col text-4xl font-bold mb-12">
+            문의 리스트
+            <span className="after"></span>
+          </div>
+          <div className="w-full h-full">
+            <ul>
+              {roomList?.map((el) => {
+                return (
+                  currentStatus === el.status && (
+                    <ChatItem
+                      name={el.roomName}
+                      path={currentPathName}
+                      link={el.id}
+                      key={el.id}
+                    />
+                  )
+                );
+              })}
+            </ul>
+            <div className="flex w-full h-full">
+              <div className="px-5 min-w-[330px] h-full border-r-[1px] border-customGray">
+                <StatusController
+                  handleStatus={handleStatus}
+                  currentStatus={currentStatus}
+                />
+              </div>
+            </div>
+          </div>
         </div>
-        <Outlet />
-      </div>
+      )}
+      <Outlet />
     </main>
   );
 }
