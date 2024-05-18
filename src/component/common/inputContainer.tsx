@@ -5,13 +5,17 @@ import { IoIosSend } from "react-icons/io";
 interface InputContainerType {
   msg?: string;
   placeholder?: string;
+  isMsg?: boolean;
+  required?: boolean
   onChangeMsg: (e: ChangeEvent<HTMLTextAreaElement>) => void;
-  handleKeypress: (e: KeyboardEvent<HTMLTextAreaElement>) => void;
+  handleKeypress?: (e: KeyboardEvent<HTMLTextAreaElement>) => void;
 }
 
 export default memo(function InputContainer({
   msg,
   placeholder,
+  isMsg = true,
+  required= false,
   onChangeMsg,
   handleKeypress,
 }: InputContainerType) {
@@ -31,6 +35,7 @@ export default memo(function InputContainer({
       <div className="flex align-middle justify-center ">
         <div className="flex relative rounded-2xl overflow-y-hidden w-[600px]">
           <TextareaAutosize
+            required={required}
             placeholder={placeholder}
             onChange={(e) => {
               onChangeMsg(e);
@@ -38,18 +43,20 @@ export default memo(function InputContainer({
             ref={textareaRef}
             onKeyDown={handleKeyDown}
             onKeyUp={(e) => {
-              handleKeypress(e);
+              if (handleKeypress) handleKeypress(e);
               // adjustTextareaSize(e);
             }}
             value={msg}
-            className="px-4 text-xl h-full max-h-[224px] overflow-y-scroll resize-none scrollBar py-[14px] rounded-2xl pl-6 pr-12 outline-none w-[600px] border-gray-500 border-[1px]"
+            className={`px-4 text-xl max-h-[224px] overflow-y-scroll resize-none scrollBar py-[14px] rounded-2xl pl-6 pr-12 outline-none w-[600px] border-gray-500 border-[1px]`}
           />
-          <IoIosSend
-            className={`${
-              fillIcon && "fill-black"
-            } absolute right-3 bottom-3 w flex items-center justify-center size-9 select-none`}
-            color="#e5e5e5"
-          />
+          {isMsg && (
+            <IoIosSend
+              className={`${
+                fillIcon && "fill-black"
+              } absolute right-3 bottom-3 w flex items-center justify-center size-9 select-none`}
+              color="#e5e5e5"
+            />
+          )}
         </div>
       </div>
     </>

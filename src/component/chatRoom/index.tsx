@@ -27,9 +27,9 @@ export default function Room() {
   return (
     <main className="w-full h-screen text-8xl">
       {currentPathName === "/list" && (
-        <div className="w-[1024px] flex flex-col h-full m-0 mx-auto">
+        <div className="w-[1024px] flex flex-col h-full m-0 mt-20 mx-auto">
           <div className="text-center w-fit flex-col text-4xl font-bold mb-12">
-            문의 리스트
+            Q&A
             <span className="after"></span>
           </div>
           <div className="w-full h-full">

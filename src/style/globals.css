@@ -82,3 +82,28 @@ a {
   background: rgba(72, 100, 119, 1);
   margin-top: 5px;
 }
+
+.custom-select {
+  appearance: none; /* 브라우저 기본 스타일 제거 */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-color: white;
+}
+
+/* 화살표 추가를 위한 컨테이너 */
+.custom-select-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+/* 사용자 정의 화살표 */
+.custom-select-wrapper::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  transform: translateY(-100%);
+  border: 6px solid transparent;
+  border-color: #000 transparent transparent transparent; /* 삼각형 화살표 */
+  pointer-events: none; /* 클릭 이벤트 방지 */
+}
