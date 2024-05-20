@@ -4,17 +4,33 @@ interface ChatItemProps {
   link: string;
   path: string;
   name: string;
+  idx:number;
+  status: string;
+  selectMenu: string;
 }
 
-export default function ChatItem({ link, path, name }: ChatItemProps) {
+export default function ChatItem({
+  link,
+  path,
+  name,
+  status,
+  idx,
+  selectMenu,
+}: ChatItemProps) {
   return (
     <Link to={link}>
       <li
         className={`
-        ${path === link ? "bg-hover" : ""}
-        hover:bg-hover rounded-md w-full h-9 p-2 flex items-center justify-between`}
+        ${idx % 2 === 1 ? "bg-[#fafafa]" : ""}
+        rounded-md w-full flex items-center justify-between text-gray-950`}
       >
-        <h3 className="text-sm">{name}</h3>
+        <p className="text-sm box-content w-full p-[15px_30px] pl-3 ">{name}</p>
+        <p className="text-sm font-bold box-content min-w-52 p-[15px_30px] pl-3">
+          {selectMenu}
+        </p>
+        <p className="text-sm box-content min-w-12 p-[15px_30px] pl-3 text-slate-500">
+          {status}
+        </p>
       </li>
     </Link>
   );

@@ -1,7 +1,9 @@
-export type RoomListType ={
+export type RoomListType =
+  | {
       id: string;
       roomName: string;
       status: string;
+      selectMenu: string;
     }[]
   | null;
 
