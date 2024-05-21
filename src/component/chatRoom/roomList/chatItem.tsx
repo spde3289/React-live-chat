@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 
 interface ChatItemProps {
   link: string;
-  path: string;
   name: string;
   idx:number;
   status: string;
@@ -11,7 +10,6 @@ interface ChatItemProps {
 
 export default function ChatItem({
   link,
-  path,
   name,
   status,
   idx,

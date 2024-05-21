@@ -6,7 +6,7 @@ interface InputContainerType {
   msg?: string;
   placeholder?: string;
   isMsg?: boolean;
-  required?: boolean
+  required?: boolean;
   onChangeMsg: (e: ChangeEvent<HTMLTextAreaElement>) => void;
   handleKeypress?: (e: KeyboardEvent<HTMLTextAreaElement>) => void;
 }
@@ -15,7 +15,7 @@ export default memo(function InputContainer({
   msg,
   placeholder,
   isMsg = true,
-  required= false,
+  required = false,
   onChangeMsg,
   handleKeypress,
 }: InputContainerType) {

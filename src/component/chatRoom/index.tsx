@@ -1,13 +1,10 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import { useRoomListContext } from "@/context/useRoomListContext";
 import { getRoomList } from "@/fetch/roomFatch";
-import StatusController from "./roomList/statusController";
-import { StatusType } from "@/type/room";
 import ChatItem from "./roomList/chatItem";
 
 export default function Room() {
-  const [currentStatus, setCurrentStatus] = useState<StatusType>("진행중");
   const { roomList, setRoomList } = useRoomListContext();
   const { pathname } = useLocation();
 
@@ -20,10 +17,6 @@ export default function Room() {
   const splitPath = decodeURIComponent(pathname).split("/");
   const currentPathName = "/" + splitPath[splitPath.length - 1];
 
-  const handleStatus = (name: StatusType) => {
-    setCurrentStatus(name);
-  };
-
   return (
     <main className="w-full h-screen text-8xl">
       {currentPathName === "/list" && (
@@ -34,9 +27,7 @@ export default function Room() {
           </div>
           <div className="w-full h-full">
             <div className="flex text-xs border-b-[1px] text-slate-500">
-              <div className="box-content w-full p-[15px_30px] pl-3 ">
-                제목
-              </div>
+              <div className="box-content w-full p-[15px_30px] pl-3 ">제목</div>
               <div className="box-content min-w-52 p-[15px_30px] pl-3 ">
                 카테고리
               </div>
@@ -44,20 +35,20 @@ export default function Room() {
                 상태
               </div>
             </div>
-
-            {roomList?.map((el, idx:number) => {
-              return (
-                <ChatItem
-                  name={el.roomName}
-                  status={el.status}
-                  selectMenu={el.selectMenu}
-                  path={currentPathName}
-                  link={el.id}
-                  idx={idx}
-                  key={el.id}
-                />
-              );
-            })}
+            <div className="h-[600px] overflow-y-scroll scrollBar">
+              {roomList?.map((el, idx: number) => {
+                return (
+                  <ChatItem
+                    name={el.roomName}
+                    status={el.status}
+                    selectMenu={el.selectMenu}
+                    link={el.id}
+                    idx={idx}
+                    key={el.id}
+                  />
+                );
+              })}
+            </div>
           </div>
           {/* <div className="flex w-full h-full">
               <div className="px-5 min-w-[330px] h-full border-r-[1px] border-customGray">
