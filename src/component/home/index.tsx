@@ -81,7 +81,7 @@ const HomePageComponent = ({ user }: HomePageComponentType) => {
               required
             />
             <input
-              className="my-5 m-0 px-4 text-xl font-bold text-white py-[14px] rounded-2xl bg-base pl-6 pr-12 outline-none w-[220px] border-gray-500 border-[1px]"
+              className="my-5 m-0 px-4 text-xl font-bold text-white py-[14px] rounded-2xl bg-base outline-none w-[220px] border-gray-500 border-[1px]"
               type="submit"
               value="제출"
             />

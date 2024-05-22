@@ -21,7 +21,7 @@ export default function ChatItem({
     <>
       {/* <Link to={link} > */}
       <li
-        onClick={open}
+        onClick={() => open(link)}
         className={`
         ${idx % 2 === 1 ? "bg-[#fafafa]" : ""}
         rounded-md w-full flex items-center justify-between text-gray-950`}

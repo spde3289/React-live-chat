@@ -34,3 +34,18 @@ export const CreateRoom = async (data: ReqBodyType) => {
       throw error;
     });
 };
+
+interface JoinRoomReqBodyType {
+  content: string;
+  password: string;
+}
+
+export const JoinRoom = async (data: JoinRoomReqBodyType) => {
+  return Post<any>("/room/join", data)
+    .then((res: any) => {
+      return res.data;
+    })
+    .catch((error) => {
+      throw error;
+    });
+};

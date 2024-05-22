@@ -26,13 +26,13 @@ type ModalContextProviderType = {
 };
 
 const ModalContextProvider = ({ children }: ModalContextProviderType) => {
-  const [isModalOpen, setIsModalOpen] = useState<any | null>(null);
+  const [content, setContent] = useState<any | null>(null);
   const ref = useRef<HTMLDivElement | null>(null);
 
   const handle = useMemo<ModalHandleType>(
     () => ({
-      close: () => setIsModalOpen(null),
-      open: (article: any) => setIsModalOpen(article),
+      close: () => setContent(null),
+      open: (article: any) => setContent(article),
     }),
     []
   );
@@ -40,7 +40,7 @@ const ModalContextProvider = ({ children }: ModalContextProviderType) => {
   return (
     <ModalContext.Provider
       children={children}
-      value={[isModalOpen, handle, ref]}
+      value={[content, handle, ref]}
     />
   );
 };
