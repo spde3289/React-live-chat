@@ -34,7 +34,7 @@ const ModalContextProvider = ({ children }: ModalContextProviderType) => {
       close: () => setContent(null),
       open: (article: any) => setContent(article),
     }),
-    []
+    [content]
   );
 
   return (

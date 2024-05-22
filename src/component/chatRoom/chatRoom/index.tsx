@@ -1,4 +1,5 @@
 import { useState, useEffect, memo, KeyboardEvent, ChangeEvent } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import { socket } from "../../../soket/soket";
 import { ChatLogType } from "@/type/room";
 import MsgContainer from "./msgContainer";
@@ -12,8 +13,14 @@ interface ChatRoomInterface {
 export default memo(function ChatRoom({ roomName, user }: ChatRoomInterface) {
   const [chatLog, setChatLog] = useState<ChatLogType[]>([]);
   const [msg, setMsg] = useState<string>("");
+  const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
+    if (location.state?.value === undefined) {
+      navigate("/list");
+    }
+
     socket.connect();
     // 언마운트
     return () => {

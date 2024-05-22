@@ -35,7 +35,7 @@ const PasswordModal = () => {
       if (res) {
         setPassword("");
         close();
-        navigate(`/list/${content}`);
+        navigate(`/list/${content}`, { state: { value: true } });
         
         return;
       }
