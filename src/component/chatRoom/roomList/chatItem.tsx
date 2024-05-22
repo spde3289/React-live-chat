@@ -1,9 +1,9 @@
-import { Link } from "react-router-dom";
+import { useModalContext } from "@/context/useModalContext";
 
 interface ChatItemProps {
   link: string;
   name: string;
-  idx:number;
+  idx: number;
   status: string;
   selectMenu: string;
 }
@@ -15,9 +15,13 @@ export default function ChatItem({
   idx,
   selectMenu,
 }: ChatItemProps) {
+  const [, { open }] = useModalContext();
+
   return (
-    <Link to={link}>
+    <>
+      {/* <Link to={link} > */}
       <li
+        onClick={open}
         className={`
         ${idx % 2 === 1 ? "bg-[#fafafa]" : ""}
         rounded-md w-full flex items-center justify-between text-gray-950`}
@@ -30,6 +34,7 @@ export default function ChatItem({
           {status}
         </p>
       </li>
-    </Link>
+      {/* </Link> */}
+    </>
   );
 }
