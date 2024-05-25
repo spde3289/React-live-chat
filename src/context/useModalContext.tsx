@@ -10,11 +10,11 @@ import {
 
 type ModalHandleType = {
   close: () => void;
-  open: (article: any) => void;
+  open: (article: string) => void;
 };
 
 type ModalContextType = [
-  any | null,
+  string | null,
   ModalHandleType,
   MutableRefObject<HTMLDivElement | null>
 ];
@@ -26,13 +26,13 @@ type ModalContextProviderType = {
 };
 
 const ModalContextProvider = ({ children }: ModalContextProviderType) => {
-  const [content, setContent] = useState<any | null>(null);
+  const [content, setContent] = useState<string | null>(null);
   const ref = useRef<HTMLDivElement | null>(null);
 
   const handle = useMemo<ModalHandleType>(
     () => ({
       close: () => setContent(null),
-      open: (article: any) => setContent(article),
+      open: (article: string) => setContent(article),
     }),
     [content]
   );

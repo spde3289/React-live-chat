@@ -34,14 +34,6 @@ export default memo(function ChatRoom({ roomName, user }: ChatRoomInterface) {
   useEffect(() => {
     // 방 최초 입장
     socket.emit("join room", user, roomName);
-    // 소켓 연결
-    // socket.on("connect", () => {
-    //   console.log(socket.connected); // true
-    // });
-    // 소켓 끊김
-    // socket.on("disconnect", () => {
-    //   console.log(socket.connected); // false
-    // });
     // 채팅 입력
     socket.on("chat message", (remsg: any) => {
       setChatLog((currentMsg) => [
@@ -88,14 +80,11 @@ export default memo(function ChatRoom({ roomName, user }: ChatRoomInterface) {
   };
 
   return (
-    <section className="scrollBarController flex bg-white flex-col m-auto shadow-xl h-[824px] w-full mx-0">
-      <div>
-        <header className="flex items-center bg-white h-20 border-slate-300 ">
-          {/* <h2 className="text-4xl pl-5 font-bold">{roomName}</h2> */}
+    <section className="scrollBarController flex flex-col items-center m-auto h-full w-full mx-0">
+      <div className="flex h-[100%] w-[740px] justify-between flex-col border-[1px]">
+        <header className="flex items-center bg-white h-14 ">
+          <h2 className="text-lg font-bold">{roomName}</h2>
         </header>
-        <div className="h-2 bg-gradient-to-b from-gray-200"></div>
-      </div>
-      <div className="flex h-[100%] justify-between flex-col">
         <MsgContainer user={user} chatLog={chatLog} />
         <InputContainer
           msg={msg}

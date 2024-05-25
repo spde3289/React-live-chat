@@ -14,8 +14,8 @@ interface UserTypes {
 }
 
 const user: UserTypes = {
-  me: "rounded-[26px_26px_0_26px] bg-blue-600 ",
-  other: "rounded-[26px_26px_26px_0] bg-gray-300",
+  me: "rounded-3xl bg-[#f4f4f4]",
+  other: "rounded-3xl bg-[#f4f4f4]",
   system: "",
 };
 
@@ -23,15 +23,15 @@ export default memo(function Msg({ userType, chat }: MsgPropsType) {
   const type = userType === "me" ? "float-right" : "float-left";
   return (
     <>
-      <div className="mb-4">
+      <div className="mb-4 box-content ">
         <div className={type}>
           <div className="text-xl">{chat.user}</div>
           <div
-            className={`${user[userType]} message-container break-words w-auto max-w-md text-2xl p-2`}
+            className={`${user[userType]} px-5 py-2.5 message-container break-words w-auto max-w-md text-sm `}
           >
             {chat.msg}
-            <br />
           </div>
+          <div className="h-6"></div>
         </div>
       </div>
     </>

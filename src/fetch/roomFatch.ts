@@ -36,7 +36,7 @@ export const CreateRoom = async (data: ReqBodyType) => {
 };
 
 interface JoinRoomReqBodyType {
-  content: string;
+  content: string | null;
   password: string;
 }
 

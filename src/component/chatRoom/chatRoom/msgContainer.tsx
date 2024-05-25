@@ -29,17 +29,19 @@ export default memo(function MsgContainer({
 
   return (
     <>
-      <div className="flex h-[655px] flex-col p-5 overflow-y-scroll scrollBar">
-        {chatLog.map((el: ChatLogType, idx: number) => {
-          return (
-            <Msg
-              key={idx}
-              userType={el.user === user ? "me" : "other"}
-              chat={el}
-            />
-          );
-        })}
-        <div ref={scrollRef} />
+      <div className="flex-1 p-5 overflow-y-scroll scrollBar">
+        <div className="h-full flex flex-col">
+          {chatLog.map((el: ChatLogType, idx: number) => {
+            return (
+              <Msg
+                key={idx}
+                userType={el.user === user ? "me" : "other"}
+                chat={el}
+              />
+            );
+          })}
+          <div ref={scrollRef} />
+        </div>
       </div>
     </>
   );

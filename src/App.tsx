@@ -3,6 +3,10 @@ import HomePageComponent from "./component/home/index.tsx";
 import Room from "./component/chatRoom";
 import ChatRoom from "./component/chatRoom/chatRoom/index.tsx";
 import RootLayout from "./component/Layout/layout.tsx";
+import {
+  setLocalStorageValue,
+  getLocalStorageValue,
+} from "@/util/localStorage.ts";
 
 function generateRandomNumber() {
   return Math.floor(Math.random() * 10000)
@@ -15,7 +19,13 @@ function App() {
 
   const path: string = location.pathname.replace("/", "").split("/")[1];
 
-  const user = "user_" + generateRandomNumber();
+  const CreateUser = "user_" + generateRandomNumber();
+
+  let user;
+  if (getLocalStorageValue("name") === null) {
+    setLocalStorageValue("name", CreateUser);
+  }
+  user = getLocalStorageValue("name");
   return (
     <>
       <RootLayout>

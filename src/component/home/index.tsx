@@ -31,7 +31,7 @@ const HomePageComponent = ({ user }: HomePageComponentType) => {
     };
     CreateRoom(data).then((res) => {
       setRoomList(res);
-      navigate(`/list/${id}`);
+      navigate(`/list/${id}`, { state: { value: true } });
     });
   };
 
