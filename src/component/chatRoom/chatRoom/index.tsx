@@ -81,9 +81,9 @@ export default memo(function ChatRoom({ roomName, user }: ChatRoomInterface) {
 
   return (
     <section className="scrollBarController flex flex-col items-center m-auto h-full w-full mx-0">
-      <div className="flex h-[100%] w-[740px] justify-between flex-col border-[1px]">
+      <div className="flex h-[100%] w-full justify-between flex-col ">
         <header className="flex items-center bg-white h-14 ">
-          <h2 className="text-lg font-bold">{roomName}</h2>
+          <h2 className="text-lg font-bold pl-10">{location.state?.selectMenu}</h2>
         </header>
         <MsgContainer user={user} chatLog={chatLog} />
         <InputContainer
@@ -91,6 +91,7 @@ export default memo(function ChatRoom({ roomName, user }: ChatRoomInterface) {
           onChangeMsg={onChangeMsg}
           handleKeypress={handleKeypress}
         />
+        <div className="h-8"></div>
       </div>
     </section>
   );

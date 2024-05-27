@@ -44,7 +44,6 @@ export default memo(function InputContainer({
             onKeyDown={handleKeyDown}
             onKeyUp={(e) => {
               if (handleKeypress) handleKeypress(e);
-              // adjustTextareaSize(e);
             }}
             value={msg}
             className={`px-4 text-xl max-h-[224px] overflow-y-scroll resize-none scrollBar py-[14px] rounded-2xl pl-6 pr-12 outline-none w-[600px] border-gray-500 border-[1px]`}
@@ -53,7 +52,7 @@ export default memo(function InputContainer({
             <IoIosSend
               className={`${
                 fillIcon && "fill-black"
-              } absolute right-3 bottom-3 w flex items-center justify-center size-9 select-none`}
+              } absolute right-3 bottom-3 w flex items-center justify-center size-8 select-none`}
               color="#e5e5e5"
             />
           )}

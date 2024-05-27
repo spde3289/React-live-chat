@@ -1,5 +1,5 @@
 import { memo, useEffect, useRef } from "react";
-import { socket } from "../../../soket/soket";
+// import { socket } from "../../../soket/soket";
 import Msg from "./msg";
 import { ChatLogType } from "@/type/room";
 
@@ -23,24 +23,26 @@ export default memo(function MsgContainer({
     // });
 
     return () => {
-      socket.off("user list");
+      // socket.off("user list");
     };
   }, [chatLog]);
 
   return (
     <>
       <div className="flex-1 p-5 overflow-y-scroll scrollBar">
-        <div className="h-full flex flex-col">
-          {chatLog.map((el: ChatLogType, idx: number) => {
-            return (
-              <Msg
-                key={idx}
-                userType={el.user === user ? "me" : "other"}
-                chat={el}
-              />
-            );
-          })}
-          <div ref={scrollRef} />
+        <div className="h-full w-full flex flex-col items-center">
+          <div className="w-[600px] flex flex-col">
+            {chatLog.map((el: ChatLogType, idx: number) => {
+              return (
+                <Msg
+                  key={idx}
+                  userType={el.user === user ? "me" : "other"}
+                  chat={el}
+                />
+              );
+            })}
+            <div ref={scrollRef} />
+          </div>
         </div>
       </div>
     </>

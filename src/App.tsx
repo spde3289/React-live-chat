@@ -14,6 +14,13 @@ function generateRandomNumber() {
     .padStart(4, "0");
 }
 
+const setUserName = (CreateUser: string) => {
+  if (getLocalStorageValue("name") === null) {
+    setLocalStorageValue("name", CreateUser);
+  }
+  return getLocalStorageValue("name");
+};
+
 function App() {
   const location = useLocation();
 
@@ -21,11 +28,8 @@ function App() {
 
   const CreateUser = "user_" + generateRandomNumber();
 
-  let user;
-  if (getLocalStorageValue("name") === null) {
-    setLocalStorageValue("name", CreateUser);
-  }
-  user = getLocalStorageValue("name");
+  const user = setUserName(CreateUser);
+
   return (
     <>
       <RootLayout>

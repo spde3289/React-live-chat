@@ -27,7 +27,7 @@ const PasswordModal = () => {
     e.preventDefault();
 
     const data = {
-      content,
+      content: content?.link,
       password,
     };
 
@@ -35,7 +35,9 @@ const PasswordModal = () => {
       if (res) {
         setPassword("");
         close();
-        navigate(`/list/${content}`, { state: { value: true } });
+        navigate(`/list/${content?.link}`, {
+          state: { value: true, selectMenu: content?.selectMenu },
+        });
         
         return;
       }
