@@ -74,7 +74,7 @@ const HomePageComponent = ({ user }: HomePageComponentType) => {
               id="password"
               maxLength={4} // 최대 4자리로 제한
               pattern="\d{4}" // 4자리 숫자 패턴
-              placeholder="비밀먼호를 입력해주세요"
+              placeholder="비밀번호를 입력해주세요"
               className="my-5 px-4 text-xl py-[14px] rounded-2xl pl-6 pr-12 outline-none w-[300px] border-gray-500 border-[1px]"
               value={password}
               onChange={onChangePassward}
