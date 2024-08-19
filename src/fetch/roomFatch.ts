@@ -24,7 +24,7 @@ interface ReqBodyType {
   status: string;
 }
 
-export const CreateRoom = async (data: ReqBodyType) => {;
+export const CreateRoom = async (data: ReqBodyType) => {
   return Post<any>("/room", data)
     .then((res: any) => {
       return res.data;

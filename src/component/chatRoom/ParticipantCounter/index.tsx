@@ -15,7 +15,6 @@ export default function ParticipantCounter({ roomId }: ParticipantCounterType) {
     // 참여유저 리스트
     socket.on("user list", (list) => {
       setUserList(list);
-      console.log(list);
     });
     return () => {
       setUserList([]);
