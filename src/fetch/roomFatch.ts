@@ -1,9 +1,9 @@
-import { Get, Post } from "./backEnd";
-import { isCheckRoomList } from "@/util/isCheckRoomList";
 import { RoomListType } from "@/type/room";
+import { isCheckRoomList } from "@/util/isCheckRoomList";
+import { Get, Post } from "./backEnd";
 
 export const getRoomList = async () => {
-  return Get<RoomListType>("/api/room")
+  return Get<RoomListType>("room")
     .then((res) => {
       const data = res.data;
       if (isCheckRoomList(data)) {
@@ -25,7 +25,7 @@ interface ReqBodyType {
 }
 
 export const CreateRoom = async (data: ReqBodyType) => {
-  return Post<any>("/api/room", data)
+  return Post<any>("room", data)
     .then((res: any) => {
       return res.data;
     })
@@ -40,7 +40,7 @@ interface JoinRoomReqBodyType {
 }
 
 export const JoinRoom = async (data: JoinRoomReqBodyType) => {
-  return Post<any>("/api/room/join", data)
+  return Post<any>("room/join", data)
     .then((res: any) => {
       return res.data;
     })
