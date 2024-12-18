@@ -1,12 +1,12 @@
-import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
 import { CommonResponse } from "@/type/common";
+import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
 export const getApiBase = () => import.meta.env.VITE_BASE_URL;
 
 const client = axios.create({
   timeout: 3000,
   baseURL: getApiBase(),
   headers: {
-    "Access-Control-Allow-Origin": "*",
+    'Content-Type': 'application/json',
   },
 });
 
